@@ -3,12 +3,15 @@ import { useQuery } from '@tanstack/react-query';
 import FamilyTreeTable from './family-tree-table';
 import {fetchFamilyTreeData} from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
+import Search from '../components/search/search';
+
 import './main.css';
 
 export function MainContent() {
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [filteredData, setFilteredData] = useState<FamilyMember[]>([]);
+  const [originalData, setOriginalData] = useState<FamilyMember[]>([]);
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['familyTree'],
@@ -18,7 +21,8 @@ export function MainContent() {
   // Update filteredData when data is fetched
   useEffect(() => {
     if (data) {
-      setFilteredData(data);
+        setOriginalData(data);
+        setFilteredData(data);
     }
   }, [data]);
 
@@ -47,8 +51,23 @@ export function MainContent() {
     setFilteredData(sortedData);
   };
 
+  const handleSearch = (searchTerm: string) => {
+    const filtered = originalData.filter((familiyMember) =>
+        familiyMember.FirstName.toLowerCase().includes(searchTerm.toLowerCase()),
+    );
+    const newData = filtered as FamilyMember[];
+    setFilteredData(newData);
+  };
+
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
 
-  return <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />;
+  return (
+    <div>
+        <div className='margin-bottom-sm filters'>
+            <Search setFilteredData={handleSearch} originalData={originalData} />
+        </div>
+      <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+    </div>
+);
 }
