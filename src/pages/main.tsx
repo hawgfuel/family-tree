@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import FamilyTreeTable from './family-tree-table';
+import FamilyTreeTable from '../components/table/family-tree-table';
 import {fetchFamilyTreeData} from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
@@ -63,7 +63,8 @@ export function MainContent() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div>
+    <div className="table-wrapper">
+        <h1>Werstler family tree</h1>
         <div className='margin-bottom-sm filters'>
             <Search setFilteredData={handleSearch} originalData={originalData} />
         </div>

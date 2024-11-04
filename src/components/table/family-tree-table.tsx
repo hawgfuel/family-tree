@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { FamilyMember } from '../common/types';
+import { FamilyMember } from '../../common/types';
 
 interface TableProps {
   filteredData: FamilyMember[];
