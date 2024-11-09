@@ -71,7 +71,7 @@ export function MainContent() {
 
   return (
     <div className="table-wrapper">
-        <Introduction mostCommonFirstName={mostCommonFirstName} oldestFamilyMember={oldestFamilyMember} youngestFamilyMember={youngestFamilyMember} />
+        <Introduction filteredData={filteredData} mostCommonFirstName={mostCommonFirstName} oldestFamilyMember={oldestFamilyMember} youngestFamilyMember={youngestFamilyMember} />
         <div className='margin-bottom-sm filters'>
             <Search setFilteredData={handleSearch} originalData={originalData} />
         </div>

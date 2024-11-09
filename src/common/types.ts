@@ -2,8 +2,9 @@ export interface FamilyMember {
     FirstName: string;
     LastName: string;
     MiddleName?: string;
+    MaidenName?: string;
     BirthDate: string;
-    HomeTown: string;
+    BirthPlace: string;
     Church?: string;
     BaptismDate?: string;
     MarriageDate?: string;

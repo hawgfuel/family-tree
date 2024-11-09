@@ -16,7 +16,7 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
           <th onClick={() => handleSort('LastName')}>Last Name</th>
           <th onClick={() => handleSort('MiddleName')}>Middle Name</th>
           <th onClick={() => handleSort('BirthDate')}>Birth Date</th>
-          <th onClick={() => handleSort('HomeTown')}>Home Town</th>
+          <th onClick={() => handleSort('BirthPlace')}>Birth place</th>
           <th onClick={() => handleSort('Church')}>Church</th>
           <th onClick={() => handleSort('BaptismDate')}>Baptism Date</th>
           <th onClick={() => handleSort('MarriageDate')}>Marriage Date</th>
@@ -33,8 +33,8 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
             <td>{member.FirstName}</td>
             <td>{member.LastName}</td>
             <td>{member.MiddleName}</td>
-            <td>{member.BirthDate}</td>
-            <td>{member.HomeTown}</td>
+            <td>{isNaN(new Date(member.BirthDate).getTime()) ? 'Not Available' : `${new Date(member.BirthDate).getMonth() + 1}/${new Date(member.BirthDate).getDate()}/${new Date(member.BirthDate).getFullYear()}`}</td>
+            <td>{member.BirthPlace}</td>
             <td>{member.Church}</td>
             <td>{member.BaptismDate}</td>
             <td>{member.MarriageDate}</td>
