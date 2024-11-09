@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import FamilyTreeTable from '../components/table/family-tree-table';
+import { Introduction } from './introduction';
 import {fetchFamilyTreeData} from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
-
+import {getMostCommonFirstName, getOldestFamilyMember, getYoungestFamilyMember} from '../utilities/utilities';
 import './main.css';
 
 export function MainContent() {
@@ -12,6 +13,9 @@ export function MainContent() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [filteredData, setFilteredData] = useState<FamilyMember[]>([]);
   const [originalData, setOriginalData] = useState<FamilyMember[]>([]);
+  const [mostCommonFirstName, setMostCommonFirstName] = useState<string>('');
+  const [oldestFamilyMember, setOldestFamilyMember] = useState<FamilyMember>();
+  const [youngestFamilyMember, setYoungestFamilyMember] = useState<FamilyMember>();
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['familyTree'],
@@ -23,6 +27,9 @@ export function MainContent() {
     if (data) {
         setOriginalData(data);
         setFilteredData(data);
+        setMostCommonFirstName(getMostCommonFirstName(data));
+        setOldestFamilyMember(getOldestFamilyMember(data));
+        setYoungestFamilyMember(getYoungestFamilyMember(data));
     }
   }, [data]);
 
@@ -64,11 +71,11 @@ export function MainContent() {
 
   return (
     <div className="table-wrapper">
-        <h1>Werstler family tree</h1>
+        <Introduction mostCommonFirstName={mostCommonFirstName} oldestFamilyMember={oldestFamilyMember} youngestFamilyMember={youngestFamilyMember} />
         <div className='margin-bottom-sm filters'>
             <Search setFilteredData={handleSearch} originalData={originalData} />
         </div>
-      <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+        <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
     </div>
-);
+    );
 }
