@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import FamilyTreeTable from '../components/table/family-tree-table';
 import { Introduction } from './introduction';
+import { CardView } from './card-view';
 import {fetchFamilyTreeData} from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
@@ -16,6 +17,8 @@ export function MainContent() {
   const [mostCommonFirstName, setMostCommonFirstName] = useState<string>('');
   const [oldestFamilyMember, setOldestFamilyMember] = useState<FamilyMember>();
   const [youngestFamilyMember, setYoungestFamilyMember] = useState<FamilyMember>();
+  const [isActive, setIsActive] = useState<string>('tab-0');
+  const tabContent = ["Card view", "Table view"];
 
   const { data, isLoading, error } = useQuery({
     queryKey: ['familyTree'],
@@ -75,7 +78,19 @@ export function MainContent() {
         <div className='margin-bottom-sm filters'>
             <Search setFilteredData={handleSearch} originalData={originalData} />
         </div>
-        <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+        <div role='tablist' aria-orientation="horizontal">
+            {tabContent.map((tab, index) => (
+              <button className={'button-nba ' + (isActive === `tab-${index}` ? 'isActive' : '')} role="tab" type="button"
+                aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}
+                id={`tab-${index}`} key={index} onClick={() =>  setIsActive('tab-' + index)}>{tab}</button>
+            ))}
+          </div>
+          {isActive === 'tab-0'&&
+            <CardView filteredData={filteredData} />
+          }
+          {isActive === 'tab-1' &&
+            <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+          }
     </div>
     );
 }

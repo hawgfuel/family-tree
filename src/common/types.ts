@@ -4,6 +4,8 @@ export interface FamilyMember {
     MiddleName?: string;
     MaidenName?: string;
     BirthDate: string;
+    DateDeath?: string;
+    Gender?: string;
     BirthPlace: string;
     Church?: string;
     BaptismDate?: string;
