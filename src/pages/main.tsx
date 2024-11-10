@@ -73,17 +73,18 @@ export function MainContent() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="table-wrapper">
+    <div className="content-wrapper">
+      <div className='content-head'>
         <Introduction filteredData={filteredData} mostCommonFirstName={mostCommonFirstName} oldestFamilyMember={oldestFamilyMember} youngestFamilyMember={youngestFamilyMember} />
-        <div className='margin-bottom-sm filters'>
-            <Search setFilteredData={handleSearch} originalData={originalData} />
-        </div>
+
         <div role='tablist' aria-orientation="horizontal">
             {tabContent.map((tab, index) => (
               <button className={'button-nba ' + (isActive === `tab-${index}` ? 'isActive' : '')} role="tab" type="button"
                 aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}
                 id={`tab-${index}`} key={index} onClick={() =>  setIsActive('tab-' + index)}>{tab}</button>
             ))}
+            <Search setFilteredData={handleSearch} originalData={originalData} />
+          </div>
           </div>
           {isActive === 'tab-0'&&
             <CardView filteredData={filteredData} />
