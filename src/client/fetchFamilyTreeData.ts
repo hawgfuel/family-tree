@@ -1,7 +1,9 @@
 import { FamilyMember } from '../common/types'; // Adjust the import based on your file structure
 
+
 export const fetchFamilyTreeData = async (): Promise<FamilyMember[]> => {
-  const response = await fetch('https://www.guicoder.com/familytree/api/content/items/FamilyTree');
+  const apiKey = import.meta.env.VITE_COCKPIT_API_KEY;
+  const response = await fetch(`https://www.guicoder.com/familytree/api/content/items/FamilyTree?token=${apiKey}`);
   const data = await response.json();
 
   // Format dates as needed
