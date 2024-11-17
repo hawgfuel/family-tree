@@ -22,8 +22,8 @@ export const formatFamilyMemberData = (members: any[]) => {
       BirthDate: member.BirthDate ? new Date(member.BirthDate).toLocaleDateString('en-US') : '',
       BaptismDate: member.BaptismDate ? new Date(member.BaptismDate).toLocaleDateString('en-US') : '',
       MarriageDate: member.MarriageDate ? new Date(member.MarriageDate).toLocaleDateString('en-US') : '',
-      Father: Father,
-      Mother: Mother,
+      Father: typeof member.Father === 'object' && member.Father ? `${member.Father.FirstName} ${member.Father.LastName}` : member.Father || '',
+      Mother: typeof member.Mother === 'object' && member.Mother ? `${member.Mother.FirstName} ${member.Mother.LastName}` : member.Mother || '',
     };
   });
 };

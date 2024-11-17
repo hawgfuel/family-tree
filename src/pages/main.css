@@ -23,7 +23,7 @@ h1{
     font-weight: 600;
 }
 
-.card-view {padding:20px;}
+.card-view {padding:10px 20px;}
 
 .card-container {
     display: grid;
@@ -57,7 +57,7 @@ h1{
 }
 
 .content-head {
-    padding:20px;
+    padding:0 20px;
 }
 
 .introduction-data{
@@ -79,6 +79,7 @@ h1{
 
 .fl-table {
     border-radius: 5px;
+    margin-top: 10px;
     font-size: 12px;
     font-weight: normal;
     border: none;
@@ -88,6 +89,7 @@ h1{
     white-space: nowrap;
     background-color: white;
 }
+
 .fl-table tr {
     border-bottom:solid #bdbdbd 1px;
 }

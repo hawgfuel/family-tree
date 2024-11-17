@@ -11,10 +11,9 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
   const getFormattedParentName = (parent: any) => {
     // If the parent is an object with FirstName and LastName, return them
     if (parent && typeof parent === 'object') {
-      return `${parent.FirstName || ''} ${parent.LastName || ''}`;
+      return `${parent.FirstName || ''} ${parent.LastName || ''}`.trim() || '';
     }
-    // If the parent is not an object, return an empty string
-    return '';
+    return parent ? parent : 'unknown';
   };
 
   return (
@@ -42,7 +41,13 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
             <td>{member.FirstName}</td>
             <td>{member.LastName}</td>
             <td>{member.MiddleName}</td>
-            <td>{isNaN(new Date(member.BirthDate).getTime()) ? '' : `${new Date(member.BirthDate).getMonth() + 1}/${new Date(member.BirthDate).getDate()}/${new Date(member.BirthDate).getFullYear()}`}</td>
+            <td>
+              {isNaN(new Date(member.BirthDate).getTime())
+                ? ''
+                : `${new Date(member.BirthDate).getMonth() + 1}/${new Date(
+                    member.BirthDate
+                  ).getDate()}/${new Date(member.BirthDate).getFullYear()}`}
+            </td>
             <td>{member.BirthPlace}</td>
             <td>{member.Church}</td>
             <td>{member.BaptismDate}</td>
