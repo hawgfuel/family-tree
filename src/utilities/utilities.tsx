@@ -1,41 +1,27 @@
 import { FamilyMember } from '../common/types';
 
-export function getMostCommonFirstName(familyMembers: FamilyMember[]): string {
-    const nameCount: Record<string, number> = {};
+export function getMostCommonFirstName(data: FamilyMember[]): string {
+    if (data.length === 0) return ''; // Handle empty array
+    const nameCounts = data.reduce((counts, member) => {
+      counts[member.FirstName] = (counts[member.FirstName] || 0) + 1;
+      return counts;
+    }, {} as Record<string, number>);
+    return Object.keys(nameCounts).reduce((a, b) =>
+      nameCounts[a] > nameCounts[b] ? a : b
+    );
+  }
+  
+  export function getOldestFamilyMember(data: FamilyMember[]): FamilyMember | null {
+    if (data.length === 0) return null; // Handle empty array
+    return data.reduce((oldest, current) =>
+      new Date(current.BirthDate) < new Date(oldest.BirthDate) ? current : oldest
+    );
+  }
 
-    familyMembers.forEach(member => {
-        const firstName = member.FirstName;
-        nameCount[firstName] = (nameCount[firstName] || 0) + 1;
-    });
-
-    // Find the name with the highest count
-    let mostCommonName = "";
-    let maxCount = 0;
-
-    for (const name in nameCount) {
-        if (nameCount[name] > maxCount) {
-            mostCommonName = name;
-            maxCount = nameCount[name];
-        }
-    }
-
-    return mostCommonName;
-}
-
-export function getOldestFamilyMember(familyMembers: FamilyMember[]): FamilyMember {
-
-    return familyMembers.reduce((oldest, member) => {
-        const oldestBirthDate = new Date(oldest.BirthDate);
-        const memberBirthDate = new Date(member.BirthDate);
-        return memberBirthDate < oldestBirthDate ? member : oldest;
-    });
-}
-
-export function getYoungestFamilyMember(familyMembers: FamilyMember[]): FamilyMember {
-
-    return familyMembers.reduce((oldest, member) => {
-        const oldestBirthDate = new Date(oldest.BirthDate);
-        const memberBirthDate = new Date(member.BirthDate);
-        return memberBirthDate > oldestBirthDate ? member : oldest;
-    });
-}
+  export function getYoungestFamilyMember(data: FamilyMember[]): FamilyMember | null {
+    if (data.length === 0) return null; // Handle empty array
+    return data.reduce((youngest, current) =>
+      new Date(current.BirthDate) > new Date(youngest.BirthDate) ? current : youngest
+    );
+  }
+  

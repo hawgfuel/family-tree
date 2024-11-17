@@ -13,7 +13,7 @@ export interface FamilyMember {
     MilitaryService?: string;
     Occupation?: string;
     Education?: string;
-    Father?: string;
-    Mother?: string;
+    Father?:  string | null;
+    Mother?:  string | null;
     History?: string;
   }

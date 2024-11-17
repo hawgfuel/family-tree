@@ -61,6 +61,23 @@ h1{
     padding:20px;
 }
 
+.introduction-data{
+    list-style: none;
+    padding-left:10px;
+}
+
+.introduction-data span{
+    font-weight: 500;
+}
+
+.card-container h3 {font-size: .9em;margin: .2em 0 .8em 0}
+
+.card-member {
+    font-size: .8em;
+    list-style: none;
+    padding-left:0px;
+}
+
 .fl-table {
     border-radius: 5px;
     font-size: 12px;

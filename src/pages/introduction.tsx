@@ -2,25 +2,37 @@ import { FamilyMember } from '../common/types';
 import {downloadCSV} from '../components/download-csv/download-csv';
 
 interface IntroductionProps {
-    mostCommonFirstName: string;
-    oldestFamilyMember: FamilyMember | undefined;
-    youngestFamilyMember: FamilyMember | undefined;
-    filteredData: FamilyMember[];  // Corrected this to an array of FamilyMember
+    introductionData: {
+        totalCount: number;
+        mostCommonFirstName: string;
+        oldestFamilyMember: FamilyMember;
+        youngestFamilyMember: FamilyMember;
+        filteredData: FamilyMember[]; 
+    };
   }
   
-
-export function Introduction({ mostCommonFirstName, oldestFamilyMember, youngestFamilyMember, filteredData}: IntroductionProps) {
+  export function Introduction({ introductionData }: IntroductionProps) {
+    const {
+    totalCount,
+      mostCommonFirstName,
+      oldestFamilyMember,
+      youngestFamilyMember,
+      filteredData,
+    } = introductionData;
     return (
         <div className='introduction'>
             <h1>Werstler Family Tree</h1>
-            <p>Most common first name: {mostCommonFirstName}</p>
-            <p>
-                Oldest family member: {oldestFamilyMember ? `${oldestFamilyMember.FirstName} ${oldestFamilyMember.LastName} Born: ${oldestFamilyMember.BirthDate}` : "No data available"}
-            </p>
-            <p>
-                Youngest family member: {youngestFamilyMember ? `${youngestFamilyMember.FirstName} ${youngestFamilyMember.LastName} Born: ${youngestFamilyMember.BirthDate}` : "No data available"}
-            </p>
-            <p>Download <a className='csv-download' onClick={() => downloadCSV(filteredData)}>CSV</a> of filtered table data.</p>
+            <ul className='introduction-data'>
+                <li><span>Total number of family members:</span> {totalCount}</li>
+                <li><span>Most common first name:</span> {mostCommonFirstName}</li>
+                <li>
+                    <span>Oldest family member:</span> {oldestFamilyMember ? `${oldestFamilyMember.FirstName} ${oldestFamilyMember.LastName} Born: ${oldestFamilyMember.BirthDate}` : "No data available"}
+                </li>
+                <li>
+                    <span>Youngest family member:</span> {youngestFamilyMember ? `${youngestFamilyMember.FirstName} ${youngestFamilyMember.LastName} Born: ${youngestFamilyMember.BirthDate}` : "No data available"}
+                </li>
+                <li><span>Download</span> <a className='csv-download' onClick={() => downloadCSV(filteredData)}>CSV</a> of filtered table data and save as an excel doc.</li>
+            </ul>
         </div>
     );
 }
