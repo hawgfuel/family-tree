@@ -1,7 +1,7 @@
 // formatData.ts
 
 export const formatParentData = (parent: any) => {
-  if (!parent) return ''; // Return empty string if no parent
+  if (!parent) return '';
 
   return {
     FirstName: parent.FirstName || '',
@@ -14,8 +14,8 @@ export const formatParentData = (parent: any) => {
 
 export const formatFamilyMemberData = (members: any[]) => {
   return members.map((member) => {
-    const Father = formatParentData(member.Father); // Format Father data
-    const Mother = formatParentData(member.Mother); // Format Mother data
+    const Father = formatParentData(member.Father);
+    const Mother = formatParentData(member.Mother);
 
     return {
       ...member,

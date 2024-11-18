@@ -55,8 +55,6 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
             <td>{member.MilitaryService}</td>
             <td>{member.Occupation}</td>
             <td>{member.Education}</td>
-
-            {/* Render Father and Mother names */}
             <td>{getFormattedParentName(member.Father)}</td>
             <td>{getFormattedParentName(member.Mother)}</td>
           </tr>

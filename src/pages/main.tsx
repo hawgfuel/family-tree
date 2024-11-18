@@ -33,7 +33,7 @@ export function MainContent() {
     const order = sortKey === key ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
 
     const sortedData = [...filteredData].sort((a, b) => {
-      const aValue = a[key] ?? ''; // Default to empty string
+      const aValue = a[key] ?? '';
       const bValue = b[key] ?? '';
 
       return order === 'asc' ? (aValue > bValue ? 1 : -1) : (aValue < bValue ? 1 : -1);
@@ -73,25 +73,25 @@ export function MainContent() {
     <div className="content-wrapper">
       <div className="content-head">
         <Introduction introductionData={introductionData} />
-
-        <div role="tablist" aria-orientation="horizontal">
-          {tabContent.map((tab, index) => (
-            <button
-              key={index}
-              className={`button-nba ${isActive === `tab-${index}` ? 'isActive' : ''}`}
-              role="tab"
-              type="button"
-              aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}
-              id={`tab-${index}`}
-              onClick={() => setIsActive(`tab-${index}`)}
-            >
-              {tab}
-            </button>
-          ))}
+        <div>
+          <span role="tablist" aria-orientation="horizontal">
+            {tabContent.map((tab, index) => (
+              <button
+                key={index}
+                className={`button-nba ${isActive === `tab-${index}` ? 'isActive' : ''}`}
+                role="tab"
+                type="button"
+                aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}
+                id={`tab-${index}`}
+                onClick={() => setIsActive(`tab-${index}`)}
+              >
+                {tab}
+              </button>
+            ))}
+          </span>
           <Search setFilteredData={handleSearch} originalData={originalData} />
         </div>
       </div>
-
       {isActive === 'tab-0' && <CardView filteredData={filteredData} />}
       {isActive === 'tab-1' && <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />}
     </div>

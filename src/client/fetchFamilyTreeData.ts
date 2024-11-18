@@ -1,4 +1,4 @@
-import { FamilyMember } from '../common/types'; // Adjust the import based on your file structure
+import { FamilyMember } from '../common/types';
 import { formatFamilyMemberData } from '../utilities/formatData';
 
 export const fetchFamilyTreeData = async (): Promise<FamilyMember[]> => {
