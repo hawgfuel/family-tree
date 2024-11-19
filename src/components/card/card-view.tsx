@@ -1,6 +1,6 @@
 
-import { FamilyMember } from '../common/types';
-import {Card} from '../components/card/card';
+import { FamilyMember } from '../../common/types';
+import {Card} from './card';
 
 interface CardProps{
     filteredData: FamilyMember[];

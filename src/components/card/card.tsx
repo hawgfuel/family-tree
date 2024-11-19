@@ -1,4 +1,5 @@
 import { FamilyMember } from '../../common/types';
+import './card.css';
 
 interface CardProps{
     filteredData: FamilyMember[];

@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
-import FamilyTreeTable from '../components/table/family-tree-table';
+import FamilyTreeTable from '../components/table/table';
 import { Introduction } from './introduction';
-import { CardView } from './card-view';
+import { CardView } from '../components/card/card-view';
 import { fetchFamilyTreeData } from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
@@ -78,7 +78,7 @@ export function MainContent() {
             {tabContent.map((tab, index) => (
               <button
                 key={index}
-                className={`button-nba ${isActive === `tab-${index}` ? 'isActive' : ''}`}
+                className={`button-pivot ${isActive === `tab-${index}` ? 'isActive' : ''}`}
                 role="tab"
                 type="button"
                 aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}

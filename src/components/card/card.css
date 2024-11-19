@@ -1,0 +1,39 @@
+
+.card-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: masonry;
+  }
+
+  .family-card{
+    border: 2px solid #c7c7c7; 
+    border-radius: 8px;
+    box-shadow: 2px 2px 5px rgba(221, 221, 221, 0.3);
+    padding: 6px 10px; 
+    background-color: #fff; 
+    color: #000; 
+    transition: all .2s ease-in-out; 
+    cursor: pointer;
+  }
+
+  .family-card:hover{
+    transform: scale(1.2);
+}
+
+  .family-card h3 {
+    font-size:1em;
+    font-weight:600;
+  }
+
+  .family-card p {
+    font-size:.8em;
+  }
+
+.card-container h3 {font-size: .9em;margin: .2em 0 .8em 0}
+
+.card-member {
+    font-size: .8em;
+    list-style: none;
+    padding-left:0px;
+}

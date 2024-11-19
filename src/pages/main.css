@@ -25,30 +25,6 @@ h1{
 
 .card-view {padding:10px 20px;}
 
-.card-container {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: masonry;
-  }
-
-  .family-card{
-    border: 2px solid #999999; 
-    border-radius: 8px;
-    box-shadow: 2px 2px 5px rgba(124, 124, 124, 0.3);
-    padding: 6px 10px; 
-    background-color: #fff; 
-    color: #000; 
-  }
-  .family-card h3 {
-    font-size:1em;
-    font-weight:600;
-  }
-
-  .family-card p {
-    font-size:.8em;
-  }
-
 /* Table Styles */
 
 .content-wrapper{
@@ -69,48 +45,7 @@ h1{
     font-weight: 500;
 }
 
-.card-container h3 {font-size: .9em;margin: .2em 0 .8em 0}
-
-.card-member {
-    font-size: .8em;
-    list-style: none;
-    padding-left:0px;
-}
-
-.fl-table {
-    border-radius: 5px;
-    margin-top: 10px;
-    font-size: 12px;
-    font-weight: normal;
-    border: none;
-    border-collapse: collapse;
-    width: 100%;
-    max-width: 100%;
-    white-space: nowrap;
-    background-color: white;
-}
-
-.fl-table tr {
-    border-bottom:solid #bdbdbd 1px;
-}
-
-.fl-table td, .fl-table th {
-    padding: 8px;
-    text-align: left;
-}
-
-.fl-table td {
-    border-right: 1px solid #f8f8f8;
-    font-size: 12px;
-}
-
-.fl-table thead th {
-    color: #ffffff;
-    background: #5a779b ;
-    cursor: pointer;
-}
-
-.button-nba, .filters button{
+.button-pivot, .filters button{
     color:#fff;
     background-color: hsl(0, 0%, 33%);
     border:none;
@@ -119,11 +54,11 @@ h1{
     cursor: pointer;
 }
 
-.button-nba:last-child{
+.button-pivot:last-child{
     border-right:0px;
 }
 
-.button-nba:hover{
+.button-pivot:hover{
     background-color: #aa6600 ;
 }
 
@@ -191,7 +126,7 @@ select {
         width: 120px;
         text-overflow: ellipsis;
     }
-    .button-nba{
+    .button-pivot{
         display:block;
         width:100%;
         text-align:left;
