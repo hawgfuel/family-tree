@@ -34,7 +34,7 @@ export function Card({ filteredData }: CardProps) {
             {member.BirthPlace && <li>Birth Place: {member.BirthPlace}</li>}
             {member.DateDeath && <li>Died: {member.DateDeath}</li>}
             {member.Father && (
-              <li
+              <li className='parent-li'
                 onMouseEnter={() => {
                   if (member.Father && member.Father.id) {
                     handleMouseEnter(member.Father.id);
@@ -50,7 +50,7 @@ export function Card({ filteredData }: CardProps) {
               </li>
             )}
             {member.Mother && (
-              <li
+              <li className='parent-li'
                 onMouseEnter={() => {
                   if (member.Mother && member.Mother.id) {
                     handleMouseEnter(member.Mother.id);

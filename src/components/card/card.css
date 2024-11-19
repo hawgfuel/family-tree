@@ -38,6 +38,11 @@
     padding-left:0px;
 }
 
+.parent-li:hover {
+  cursor: pointer;
+  color: #0084f0 ;
+}
+
 .highlight {
   background-color: #cfe8fc ;
 }
