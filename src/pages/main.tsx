@@ -59,6 +59,9 @@ export function MainContent() {
     LastName: '',
     BirthDate: '',
     BirthPlace: '',
+    id:'',
+    Mother: {FirstName: '', LastName: '', id: ''},
+    Father: {FirstName: '', LastName: '', id: ''},
   };
 
   const introductionData = {

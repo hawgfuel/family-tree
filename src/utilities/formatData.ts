@@ -9,6 +9,7 @@ export const formatParentData = (parent: any) => {
     MiddleName: parent.MiddleName || '',
     BirthDate: parent.BirthDate ? new Date(parent.BirthDate).toLocaleDateString('en-US') : '',
     BaptismDate: parent.BaptismDate ? new Date(parent.BaptismDate).toLocaleDateString('en-US') : '',
+    id: parent._id || '',
   };
 };
 
@@ -19,11 +20,21 @@ export const formatFamilyMemberData = (members: any[]) => {
 
     return {
       ...member,
+      id: member._id,
       BirthDate: member.BirthDate ? new Date(member.BirthDate).toLocaleDateString('en-US') : '',
       BaptismDate: member.BaptismDate ? new Date(member.BaptismDate).toLocaleDateString('en-US') : '',
       MarriageDate: member.MarriageDate ? new Date(member.MarriageDate).toLocaleDateString('en-US') : '',
-      Father: typeof member.Father === 'object' && member.Father ? `${member.Father.FirstName} ${member.Father.LastName}` : member.Father || '',
-      Mother: typeof member.Mother === 'object' && member.Mother ? `${member.Mother.FirstName} ${member.Mother.LastName}` : member.Mother || '',
+      Father: typeof member.Father === 'object' && member.Father ? { 
+        id: member.Father._id, 
+        FirstName: member.Father.FirstName, 
+        LastName: member.Father.LastName 
+      } : null,
+      
+      Mother: typeof member.Mother === 'object' && member.Mother ? { 
+        id: member.Mother._id, 
+        FirstName: member.Mother.FirstName, 
+        LastName: member.Mother.LastName 
+      } : null,
     };
   });
 };
