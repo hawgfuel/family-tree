@@ -64,25 +64,4 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
   );
 }
 
-FamilyTreeTable.propTypes = {
-  filteredData: PropTypes.arrayOf(
-    PropTypes.shape({
-      FirstName: PropTypes.string.isRequired,
-      LastName: PropTypes.string.isRequired,
-      MiddleName: PropTypes.string,
-      BirthDate: PropTypes.string,
-      BirthPlace: PropTypes.string,
-      Church: PropTypes.string,
-      BaptismDate: PropTypes.string,
-      MarriageDate: PropTypes.string,
-      MilitaryService: PropTypes.string,
-      Occupation: PropTypes.string,
-      Education: PropTypes.string,
-      Father: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-      Mother: PropTypes.oneOfType([PropTypes.object, PropTypes.string]),
-    })
-  ).isRequired,
-  handleSort: PropTypes.func.isRequired,
-};
-
 export default FamilyTreeTable;
