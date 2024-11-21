@@ -9,12 +9,13 @@ export interface FamilyMember {
     BirthPlace: string;
     Church?: string;
     BaptismDate?: string;
+    MarriedTo?:{FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     MarriageDate?: string;
     MilitaryService?: string;
     Occupation?: string;
     Education?: string;
-    Father: { FirstName: string; LastName: string; id: string } | null;
-    Mother:  { FirstName: string; LastName: string; id: string } | null;
+    Father: { FirstName: string; LastName: string; MiddleName: string; id: string } | null;
+    Mother:  { FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     History?: string;
     id:string;
   }

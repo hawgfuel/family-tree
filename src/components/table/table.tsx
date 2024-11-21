@@ -10,7 +10,6 @@ interface TableProps {
 
 function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
   const getFormattedParentName = (parent: any) => {
-    // If the parent is an object with FirstName and LastName, return them
     if (parent && typeof parent === 'object') {
       return `${parent.FirstName || ''} ${parent.LastName || ''}`.trim() || '';
     }

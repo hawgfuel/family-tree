@@ -60,12 +60,12 @@ export function MainContent() {
     BirthDate: '',
     BirthPlace: '',
     id:'',
-    Mother: {FirstName: '', LastName: '', id: ''},
-    Father: {FirstName: '', LastName: '', id: ''},
+    Mother: {FirstName: '', LastName: '', MiddleName: '', id: ''},
+    Father: {FirstName: '', LastName: '',  MiddleName: '', id: ''},
   };
 
   const introductionData = {
-    totalCount: originalData.length + 1,
+    totalCount: originalData.length,
     mostCommonFirstName: getMostCommonFirstName(originalData) || 'unknown',
     oldestFamilyMember: getOldestFamilyMember(originalData) || defaultFamilyMember,
     youngestFamilyMember: getYoungestFamilyMember(originalData) || defaultFamilyMember,

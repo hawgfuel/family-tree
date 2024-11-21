@@ -1,22 +1,7 @@
 // formatData.ts
 
-export const formatParentData = (parent: any) => {
-  if (!parent) return '';
-
-  return {
-    FirstName: parent.FirstName || '',
-    LastName: parent.LastName || '',
-    MiddleName: parent.MiddleName || '',
-    BirthDate: parent.BirthDate ? new Date(parent.BirthDate).toLocaleDateString('en-US') : '',
-    BaptismDate: parent.BaptismDate ? new Date(parent.BaptismDate).toLocaleDateString('en-US') : '',
-    id: parent._id || '',
-  };
-};
-
 export const formatFamilyMemberData = (members: any[]) => {
   return members.map((member) => {
-    const Father = formatParentData(member.Father);
-    const Mother = formatParentData(member.Mother);
 
     return {
       ...member,
@@ -34,6 +19,12 @@ export const formatFamilyMemberData = (members: any[]) => {
         id: member.Mother._id, 
         FirstName: member.Mother.FirstName, 
         LastName: member.Mother.LastName 
+      } : null,
+
+      MarriedTo: typeof member.Mother === 'object' && member.MarriedTo ? { 
+        id: member.MarriedTo._id, 
+        FirstName: member.MarriedTo.FirstName, 
+        LastName: member.MarriedTo.LastName 
       } : null,
     };
   });

@@ -7,17 +7,17 @@ interface CardProps {
 }
 
 export function Card({ filteredData }: CardProps) {
-  const handleMouseEnter = (fatherId: string) => {
-    const fatherCard = document.getElementById(fatherId);
-    if (fatherCard) {
-      fatherCard.classList.add('highlight'); // Add highlight class
+  const handleMouseEnter = (id: string) => {
+    const relative = document.getElementById(id);
+    if (relative) {
+        relative.classList.add('highlight'); // Add highlight class
     }
   };
 
-  const handleMouseLeave = (fatherId: string) => {
-    const fatherCard = document.getElementById(fatherId);
-    if (fatherCard) {
-      fatherCard.classList.remove('highlight'); // Remove highlight class
+  const handleMouseLeave = (id: string) => {
+    const relative = document.getElementById(id);
+    if (relative) {
+        relative.classList.remove('highlight'); // Remove highlight class
     }
   };
 
@@ -26,12 +26,28 @@ export function Card({ filteredData }: CardProps) {
       {filteredData.length > 0 && filteredData.map((member) => (
         <div className="family-card" key={member.id} id={member.id}>
           <h3>
-            {member.FirstName} {member.LastName}
+            {member.FirstName}, {member.MiddleName} {member.LastName}
           </h3>
           <ul className="card-member">
-            {member.MaidenName && <li>Maiden Name: {member.MaidenName}</li>}
+          {member.MarriedTo && (
+              <li className='parent-li'
+                onMouseEnter={() => {
+                  if (member.MarriedTo && member.MarriedTo.id) {
+                    handleMouseEnter(member.MarriedTo.id);
+                  }
+                }}
+                onMouseLeave={() => {
+                  if (member.MarriedTo && member.MarriedTo.id) {
+                    handleMouseLeave(member.MarriedTo.id); 
+                  }
+                }}
+              >
+                Married to: {member.MarriedTo.FirstName} {member.MarriedTo.MiddleName} {member.MarriedTo.LastName}
+              </li>
+            )}
+            {member.MarriageDate && <li>Marriage date: {member.MarriageDate}</li>}
             {member.BirthDate && <li>Born: {member.BirthDate}</li>}
-            {member.BirthPlace && <li>Birth Place: {member.BirthPlace}</li>}
+            {member.BirthPlace && <li>Birth place: {member.BirthPlace}</li>}
             {member.DateDeath && <li>Died: {member.DateDeath}</li>}
             {member.Father && (
               <li className='parent-li'
