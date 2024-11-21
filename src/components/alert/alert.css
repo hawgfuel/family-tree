@@ -1,0 +1,30 @@
+.alert {
+    padding:10px;
+    position: relative;
+}
+
+.danger{
+    background-color: #FFD2D9;
+}
+
+.primary{
+    background-color: #CCDFFF;
+}
+
+.warning{
+    background-color: #FFF7CD;
+}
+
+.succses{
+    background-color: #C9EBDD;
+}
+
+.close-alert{
+    background-color: transparent;
+    border:none;
+    font-weight: 800;
+    cursor: pointer;
+    position: absolute;
+    right:10px;
+    top:8px;
+}

@@ -2,7 +2,6 @@
 
 export const formatFamilyMemberData = (members: any[]) => {
   return members.map((member) => {
-
     return {
       ...member,
       id: member._id,
@@ -27,5 +26,10 @@ export const formatFamilyMemberData = (members: any[]) => {
         LastName: member.MarriedTo.LastName 
       } : null,
     };
+  })
+  .sort((a, b) => {
+    const dateA = a.BirthDate ? new Date(a.BirthDate).getTime() : 0;
+    const dateB = b.BirthDate ? new Date(b.BirthDate).getTime() : 0;
+    return dateA - dateB;
   });
 };
