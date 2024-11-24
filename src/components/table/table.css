@@ -33,16 +33,28 @@
 .showHorizontalLabel {
     display:none;
 }
-@media (max-width: 767px) {
-    .showHorizontalLabel {
-        display:block;
-        font-size: .8em;
-        padding-left:10px;
+
+@media (max-width: 1490px) {
+    .fl-table {
+        display: block;
+        width: inherit;
+        white-space: nowrap;
+        background-color: white;
+        overflow: scroll;
     }
+.showHorizontalLabel {
+    display:block;
+    font-size: .8em;
+    padding-left:10px;
+}
+}
+
+@media (max-width: 767px) {
     .fl-table {
         display: block;
         width: auto;
-        overflow-x: scroll;
+        height: 300px;
+       
     }
     .table-wrapper:before{
         display: block;
