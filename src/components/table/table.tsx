@@ -17,6 +17,8 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
   };
 
   return (
+    <div>
+    <div className='showHorizontalLabel'>Scroll horizontally {'>>'}</div>
     <table className="fl-table">
       <thead>
         <tr>
@@ -61,6 +63,7 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
         ))}
       </tbody>
     </table>
+    </div>
   );
 }
 
