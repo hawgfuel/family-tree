@@ -11,9 +11,6 @@ export interface FamilyMember {
     BaptismDate?: string;
     MarriedTo?:{FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     MarriageDate?: string;
-    MilitaryService?: string;
-    Occupation?: string;
-    Education?: string;
     Father: { FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     Mother:  { FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     History?: string;

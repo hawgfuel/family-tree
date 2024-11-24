@@ -32,9 +32,7 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
           <th onClick={() => handleSort('MarriageDate')}>Marriage Date</th>
           <th onClick={() => handleSort('Father')}>Father</th>
           <th onClick={() => handleSort('Mother')}>Mother</th>
-          <th onClick={() => handleSort('MilitaryService')}>Military Service</th>
-          <th onClick={() => handleSort('Occupation')}>Occupation</th>
-          <th onClick={() => handleSort('Education')}>Education</th>
+          <th onClick={() => handleSort('History')}>History</th>
         </tr>
       </thead>
       <tbody>
@@ -56,9 +54,7 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
             <td>{member.MarriageDate}</td>
             <td>{getFormattedParentName(member.Father)}</td>
             <td>{getFormattedParentName(member.Mother)}</td>
-            <td>{member.MilitaryService}</td>
-            <td>{member.Occupation}</td>
-            <td>{member.Education}</td>
+            <td>{member.History}</td>
           </tr>
         ))}
         <tr><td>(end of table)</td></tr>
