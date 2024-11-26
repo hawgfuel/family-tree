@@ -6,7 +6,6 @@ export interface FamilyMember {
     BirthDate: string;
     DateDeath?: string;
     Gender?: string;
-    BirthPlace: string;
     Church?: string;
     BaptismDate?: string;
     MarriedTo?:{FirstName: string; LastName: string; MiddleName: string; id: string } | null;
@@ -14,5 +13,6 @@ export interface FamilyMember {
     Father: { FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     Mother:  { FirstName: string; LastName: string; MiddleName: string; id: string } | null;
     History?: string;
+    Children?: [{child: string; id:string}];
     id:string;
   }

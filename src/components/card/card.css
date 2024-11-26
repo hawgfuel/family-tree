@@ -30,9 +30,10 @@
     font-size:.8em;
   }
 
-.card-container h3 {font-size: .9em;margin: .2em 0 .8em 0}
+.card-container h3 {font-size: .9em;margin: .2em 0 .6em 0}
 
 .card-member {
+    margin-top: 4px;
     font-size: .8em;
     list-style: none;
     padding-left:0px;

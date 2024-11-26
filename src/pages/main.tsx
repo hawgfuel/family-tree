@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import FamilyTreeTable from '../components/table/table';
 import { Introduction } from './introduction';
-import { CardView } from '../components/card/card-view';
+import { Card } from '../components/card/card';
 import { fetchFamilyTreeData } from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
-import { getMostCommonFirstName, getOldestFamilyMember, getYoungestFamilyMember } from '../utilities/utilities';
+import { getMostCommonFirstName, getOldestFamilyMember, getYoungestFamilyMember, filterByGenerations } from '../utilities/utilities';
 import './main.css';
 
 export function MainContent() {
@@ -15,6 +15,10 @@ export function MainContent() {
   const [filteredData, setFilteredData] = useState<FamilyMember[]>([]);
   const [originalData, setOriginalData] = useState<FamilyMember[]>([]);
   const [isActive, setIsActive] = useState<string>('tab-0');
+  const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
+  const [generationFilter, setGenerationFilter] = useState<number>(1); // Track number of generations
+  const [rootMemberId, setRootMemberId] = useState<string>("");
+
   const tabContent = ['Card view', 'Table view'];
 
   const { data, isLoading, error } = useQuery({
@@ -28,6 +32,20 @@ export function MainContent() {
       setFilteredData(data);
     }
   }, [data]);
+
+  useEffect(() => {
+    if (data && rootMemberId) {
+      const newfilteredData = filterByGenerations(rootMemberId, filteredData, 2); // Example: 2 generations
+      console.log(newfilteredData); // Use this in your component or logic.
+      setFilteredData(newfilteredData)
+    }
+  }, [rootMemberId]);
+
+  useEffect(() => {
+    if (selectedFamilyMember) {
+      setRootMemberId(selectedFamilyMember.id);
+    }
+  }, [selectedFamilyMember]);
 
   const handleSort = (key: keyof FamilyMember) => {
     const order = sortKey === key ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
@@ -58,10 +76,10 @@ export function MainContent() {
     FirstName: 'Unknown',
     LastName: '',
     BirthDate: '',
-    BirthPlace: '',
-    id:'',
-    Mother: {FirstName: '', LastName: '', MiddleName: '', id: ''},
-    Father: {FirstName: '', LastName: '',  MiddleName: '', id: ''},
+    id: '',
+    Mother: null,
+    Father: null,
+    Children: [{child:'', id:''}],
   };
 
   const introductionData = {
@@ -93,10 +111,28 @@ export function MainContent() {
             ))}
           </span>
           <Search setFilteredData={handleSearch} originalData={originalData} />
+          <div>
+            <label htmlFor="generationFilter">Generations:</label>
+            <select
+              id="generationFilter"
+              value={generationFilter}
+              onChange={(e) => setGenerationFilter(Number(e.target.value))}
+            >
+              <option value={1}>1 Generation</option>
+              <option value={2}>2 Generations</option>
+            </select>
+          </div>
         </div>
       </div>
-      {isActive === 'tab-0' && <CardView filteredData={filteredData} />}
-      {isActive === 'tab-1' && <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />}
+      {isActive === 'tab-0' && (
+        <Card
+          filteredData={filteredData}
+          setSelectedFamilyMember={setSelectedFamilyMember}
+        />
+      )}
+      {isActive === 'tab-1' && (
+        <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+      )}
     </div>
   );
 }
