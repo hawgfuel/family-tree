@@ -94,8 +94,9 @@ export function MainContent() {
     <div className="content-wrapper">
       <div className="content-head">
         <Introduction introductionData={introductionData} />
-        <div>
-          <span role="tablist" aria-orientation="horizontal">
+          
+        
+        <div className='tab-list' role="tablist" aria-orientation="horizontal">
             {tabContent.map((tab, index) => (
               <button
                 key={index}
@@ -109,10 +110,10 @@ export function MainContent() {
                 {tab}
               </button>
             ))}
-          </span>
+            <h4 className='filter-header'>Filters: </h4>
           <Search setFilteredData={handleSearch} originalData={originalData} />
-          <div>
-            <label htmlFor="generationFilter">Generations:</label>
+          <span className='generations-filter'>
+            <label htmlFor="filter-label">Narrow tree by:</label>
             <select
               id="generationFilter"
               value={generationFilter}
@@ -121,8 +122,7 @@ export function MainContent() {
               <option value={1}>1 Generation</option>
               <option value={2}>2 Generations</option>
             </select>
-          </div>
-        </div>
+          </span>
       </div>
       {isActive === 'tab-0' && (
         <Card
@@ -133,6 +133,7 @@ export function MainContent() {
       {isActive === 'tab-1' && (
         <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
       )}
+      </div>
     </div>
   );
 }

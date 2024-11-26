@@ -84,6 +84,11 @@ select {
     padding:.3rem;
 }
 
+.tab-list {border-bottom:1px solid #aaaaaa;border-top:1px solid #aaaaaa;margin-bottom:8px;}
+.filter-header{margin:0 0 0 8px;display:inline-block;}
+
+.generations-filter {margin-left:8px;display:inline-block}
+.filter-label {font-weight: 700;}
 .reset-button{
     padding:0;
     margin:0;
