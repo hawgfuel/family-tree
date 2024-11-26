@@ -35,7 +35,7 @@ export function MainContent() {
 
   useEffect(() => {
     if (data && rootMemberId) {
-      const newfilteredData = filterByGenerations(rootMemberId, filteredData, 2); // Example: 2 generations
+      const newfilteredData = filterByGenerations(rootMemberId, filteredData, generationFilter); // Example: 2 generations
       console.log(newfilteredData); // Use this in your component or logic.
       setFilteredData(newfilteredData)
     }
