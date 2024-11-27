@@ -69,7 +69,7 @@ export function Card({ filteredData, setSelectedFamilyMember }: CardProps) {
               )}
               {member.Church && <li>Church: {member.Church}</li>}
               {member.BaptismDate && <li>Baptism Date: {member.BaptismDate}</li>}
-              {member.History && <li>History: {member.History}</li>}
+              {/* {member.History && <li>History: {member.History}</li>} */}
             </ul>
           </div>
         ))

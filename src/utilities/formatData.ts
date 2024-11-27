@@ -3,6 +3,7 @@ export const formatFamilyMemberData = (members: any[]) => {
   const formattedMembers = members.map((member, index) => ({
     ...member,
     id: member._id,
+    History:member.History,
     BirthDate: member.BirthDate ? new Date(member.BirthDate).toLocaleDateString('en-US') : '',
     BaptismDate: member.BaptismDate ? new Date(member.BaptismDate).toLocaleDateString('en-US') : '',
     MarriageDate: member.MarriageDate ? new Date(member.MarriageDate).toLocaleDateString('en-US') : '',

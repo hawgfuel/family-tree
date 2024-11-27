@@ -62,6 +62,21 @@ export function getMostCommonFirstName(data: FamilyMember[]): string {
       // Add the current member
       result.add(member);
   
+      // Add siblings (children of the same parents)
+      if (member.Father?.id || member.Mother?.id) {
+        allMembers
+          .filter(
+            (m) =>
+              (m.Father?.id === member.Father?.id || m.Mother?.id === member.Mother?.id) &&
+              m.id !== member.id && // Exclude the current member
+              !visited.has(m.id) // Exclude already visited members
+          )
+          .forEach((sibling) => {
+            result.add(sibling);
+            visited.add(sibling.id); // Mark siblings as visited
+          });
+      }
+  
       // Traverse parents
       if (member.Father?.id) traverse(member.Father.id, currentGeneration + 1);
       if (member.Mother?.id) traverse(member.Mother.id, currentGeneration + 1);
@@ -88,7 +103,5 @@ export function getMostCommonFirstName(data: FamilyMember[]): string {
     // Convert result set to an array and ensure order is correct
     return Array.from(result);
   }
-  
-  
   
   

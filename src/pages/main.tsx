@@ -76,9 +76,11 @@ export function MainContent() {
     FirstName: 'Unknown',
     LastName: '',
     BirthDate: '',
+    BirthPlace: '',
     id: '',
     Mother: null,
     Father: null,
+    History:'',
     Children: [{child:'', id:''}],
   };
 
