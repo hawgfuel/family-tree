@@ -6,7 +6,8 @@ import { Card } from '../components/card/card';
 import { fetchFamilyTreeData } from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
-import { getMostCommonFirstName, getOldestFamilyMember, getYoungestFamilyMember, filterByGenerations } from '../utilities/utilities';
+import { getFamilyTimeSpan, getMostCommonSurname, getMostCommonFirstNameByGender, getOldestFamilyMember, getYoungestFamilyMember} from '../utilities/utilities';
+import {filterByGenerations} from '../utilities/generations-transform';
 import './main.css';
 
 export function MainContent() {
@@ -86,18 +87,21 @@ export function MainContent() {
 
   const introductionData = {
     totalCount: originalData.length,
-    mostCommonFirstName: getMostCommonFirstName(originalData) || 'unknown',
+    mostCommonMaleFirstName: getMostCommonFirstNameByGender(originalData, 'male') || 'unknown',
+    mostCommonFemaleFirstName: getMostCommonFirstNameByGender(originalData, 'female') || 'unknown',
+    mostCommonSurname: getMostCommonSurname(originalData) || '',
     oldestFamilyMember: getOldestFamilyMember(originalData) || defaultFamilyMember,
     youngestFamilyMember: getYoungestFamilyMember(originalData) || defaultFamilyMember,
+    familyTimeSpan: getFamilyTimeSpan(originalData) || 0,
     filteredData: filteredData,
-  };
+  }
 
   return (
     <div className="content-wrapper">
       <div className="content-head">
-        <Introduction introductionData={introductionData} />
-          
-        
+        {originalData && 
+          <Introduction introductionData={introductionData} />
+        }
         <div className='tab-list' role="tablist" aria-orientation="horizontal">
             {tabContent.map((tab, index) => (
               <button

@@ -1,0 +1,42 @@
+.introduction {width: 100%;position: flex;}
+
+.introduction-data{
+    display: flex;
+    width: 100%;
+    padding:0;
+}
+
+.introduction-data li{
+    flex-grow:1;
+    display:inline-block;
+    font-size:.8em;
+    text-align: center;
+    line-height: 1.8em;
+    border:solid 1px #cecece;
+    padding:16px;
+}
+
+.introduction-data span{
+    display: block;
+    font-weight: 600;
+}
+
+.introduction-data p {
+    padding:8px;
+    border:solid 1px #c7c7c7;
+    font-size: .8em;
+    text-align: center;
+}
+
+.intro-value {font-weight: normal;}
+
+@media (max-width: 767px) {
+    .introduction-data{
+        display: block;
+    }
+    .introduction-data li{
+        display: block;
+        padding:6px;
+    }
+}
+

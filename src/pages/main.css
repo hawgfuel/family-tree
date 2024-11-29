@@ -36,14 +36,6 @@ h1{
     padding:0 20px 20px 20px;
 }
 
-.introduction-data{
-    list-style: none;
-    padding-left:10px;
-}
-
-.introduction-data span{
-    font-weight: 500;
-}
 
 .button-pivot, .filters button{
     color:#fff;
@@ -60,6 +52,10 @@ h1{
 
 .button-pivot:hover{
     background-color: #aa6600 ;
+}
+
+.accent-color{
+    color:#aa6600;
 }
 
 .selectYear {
