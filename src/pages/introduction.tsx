@@ -22,7 +22,7 @@ interface IntroductionProps {
       filteredData,
     } = introductionData;
 
-    const [alert, setAlert] = useState<boolean | null>(true);
+    const [alert, setAlert] = useState<boolean | null>(false);
     const [message, setMessage] = useState<string | null>(null);
     const [alertType, setAlertType] = useState<string>(''); 
     //danger,primary,warning,succses
