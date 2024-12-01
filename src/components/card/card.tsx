@@ -32,7 +32,7 @@ export function Card({ filteredData, setSelectedFamilyMember }: CardProps) {
         filteredData.map((member) => (
           <div className="family-card" key={member.id} id={member.id}>
             <h3>
-              <button className='parent-li reset-button' onClick={() => handleSelectFamilyMember(member)}>
+              <button className='parent-li reset-button family-member-name' onClick={() => handleSelectFamilyMember(member)}>
                 {member.FirstName} {member.MiddleName} {member.LastName}
               </button>
             </h3>

@@ -61,6 +61,7 @@ interface IntroductionProps {
                 <li><span>Youngest family member</span> <span className='accent-color intro-value'>{youngestFamilyMember ? `${youngestFamilyMember.FirstName} ${youngestFamilyMember.LastName} Born: ${youngestFamilyMember.BirthDate}` : "No data available"}</span></li>
                 <li><span>Family time span</span> <span className='accent-color intro-value'>{familyTimeSpan} years</span></li>
             </ul>
+            <p className='caption'>*The above snapshot data points are based only on data entered.</p>
             <p><span>Download</span> <a className='csv-download' onClick={() => downloadCSV(filteredData)}>CSV</a> of filtered table data and save as an excel doc.</p>
         </div>
     );

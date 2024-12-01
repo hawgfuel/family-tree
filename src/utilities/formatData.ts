@@ -1,9 +1,24 @@
-export const formatFamilyMemberData = (members: any[]) => {
-  // Step 1: Map members to a consistent format
+export const formatFamilyMemberData = (
+  members: any[],
+  dateRange: { startDate?: string; endDate?: string } = {}
+) => {
+  const { startDate = '', endDate = '' } = dateRange;
+
+  // Step 1: Parse dates if valid
+  const parsedStartDate = startDate ? new Date(startDate) : null;
+  const parsedEndDate = endDate ? new Date(endDate) : null;
+
+  // Validate the date range
+  const isValidDateRange =
+    parsedStartDate &&
+    parsedEndDate &&
+    parsedStartDate <= parsedEndDate;
+
+  // Step 2: Map members to a consistent format
   const formattedMembers = members.map((member, index) => ({
     ...member,
     id: member._id,
-    History:member.History,
+    History: member.History,
     BirthDate: member.BirthDate ? new Date(member.BirthDate).toLocaleDateString('en-US') : '',
     BaptismDate: member.BaptismDate ? new Date(member.BaptismDate).toLocaleDateString('en-US') : '',
     MarriageDate: member.MarriageDate ? new Date(member.MarriageDate).toLocaleDateString('en-US') : '',
@@ -34,10 +49,24 @@ export const formatFamilyMemberData = (members: any[]) => {
         : null,
   }));
 
-  // Step 2: Derive children relationships
+  // Step 3: Filter members by date range if valid
+  const filteredMembers = isValidDateRange
+    ? formattedMembers.filter((member) => {
+        const birthDate = member.BirthDate ? new Date(member.BirthDate) : null;
+        const marriageDate = member.MarriageDate ? new Date(member.MarriageDate) : null;
+
+        // Check if any date falls within the range
+        const isWithinRange = (date: Date | null) =>
+          date && parsedStartDate && parsedEndDate && date >= parsedStartDate && date <= parsedEndDate;
+
+        return isWithinRange(birthDate) || isWithinRange(marriageDate);
+      })
+    : formattedMembers;
+
+  // Step 4: Derive children relationships
   const childrenMap: Record<string, any[]> = {};
 
-  formattedMembers.forEach((member) => {
+  filteredMembers.forEach((member) => {
     if (member.Father?.id) {
       if (!childrenMap[member.Father.id]) {
         childrenMap[member.Father.id] = [];
@@ -52,12 +81,12 @@ export const formatFamilyMemberData = (members: any[]) => {
     }
   });
 
-  const enrichedMembers = formattedMembers.map((member) => ({
+  const enrichedMembers = filteredMembers.map((member) => ({
     ...member,
     Children: childrenMap[member.id] || [], // Add children array dynamically
   }));
 
-  // Step 3: Sort the enriched members
+  // Step 5: Sort the enriched members
   return enrichedMembers.sort((a, b) => {
     const dateA = a.BirthDate
       ? new Date(a.BirthDate).getTime()

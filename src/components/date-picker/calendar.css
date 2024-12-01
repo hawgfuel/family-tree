@@ -1,0 +1,111 @@
+.date-range-DateRangePicker {
+    display: inline-block !important;
+    font-family: Arial, sans-serif;
+    color: #333;
+    width:926px;
+    margin-left:12px;
+    font-size:.8em;
+    display: inline;
+  }
+
+  .date-range-DateRangePicker .date-picker-form{
+    display: inline-block !important;
+    width:auto;
+  }
+
+  .date-range-Group {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    border-radius: 4px;
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+  }
+  
+  .date-range-input {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    color: #aa6600;
+    border: 1px solid #ccc;
+    padding: 0px 0px 0px 4px;
+    width:130px;
+    cursor: pointer;
+  }
+  
+  .date-range-DateSegment {
+    padding: 0 4px;
+  }
+  
+  .set-range-Button {
+    color: #fff;
+    background-color:#aa6600;
+    border: none;
+    border-right: solid 1px;
+    padding: 8px;
+    cursor: pointer;
+  }
+
+  .clear-range-Button{
+    color: #fff;
+    background-color:hsl(0, 0%, 33%);
+    border: none;
+    border-right: solid 1px;
+    padding: 8px;
+    cursor: pointer;
+  }
+  
+  .date-range-Button:hover {
+    color: #005bb5;
+  }
+  
+  .date-range-Popover {
+    position: absolute;
+    z-index: 10;
+    border: 1px solid #ccc;
+    background-color: white;
+    border-radius: 4px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    padding: 8px;
+    width: 320px;
+  }
+  
+  .date-range-Dialog {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  
+  
+  .date-range-CalendarCell {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .date-range-CalendarCell[data-selected] {
+    background-color: #616161;
+    color: white;
+  }
+  
+  .date-range-CalendarCell:hover {
+    background-color: #e3f2fd;
+  }
+  
+  .date-range-Heading {
+    display: inline-block;
+    font-size: 1rem;
+    margin: 8px 0;
+    text-align: center;
+  }
+
+  .date-range-RangeCalendar header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin:auto;
+}
