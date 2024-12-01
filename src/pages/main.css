@@ -16,6 +16,8 @@ h1{
     margin-left: .3rem;
 } 
 
+.csv-download-container {margin-left:12px;}
+
 .csv-download {
     cursor: pointer;
     font-size:1em;

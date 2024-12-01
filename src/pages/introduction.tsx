@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FamilyMember } from '../common/types';
-import {downloadCSV} from '../components/download-csv/download-csv';
 import {Alert} from '../components/alert/alert';
 import './introduction.css';
 
@@ -62,7 +61,6 @@ interface IntroductionProps {
                 <li><span>Family time span</span> <span className='accent-color intro-value'>{familyTimeSpan} years</span></li>
             </ul>
             <p className='caption'>*The above snapshot data points are based only on data entered.</p>
-            <p><span>Download</span> <a className='csv-download' onClick={() => downloadCSV(filteredData)}>CSV</a> of filtered table data and save as an excel doc.</p>
         </div>
     );
 }

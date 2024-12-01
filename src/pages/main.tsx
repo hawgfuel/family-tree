@@ -17,6 +17,7 @@ import {
   getYoungestFamilyMember,
 } from '../utilities/utilities';
 import { filterByGenerations } from '../utilities/generations-transform';
+import {downloadCSV} from '../components/download-csv/download-csv';
 import './main.css';
 
 export function MainContent() {
@@ -83,10 +84,8 @@ export function MainContent() {
     const sortedData = [...filteredData].sort((a, b) => {
       const aValue = a[key] ?? '';
       const bValue = b[key] ?? '';
-
       return order === 'asc' ? (aValue > bValue ? 1 : -1) : (aValue < bValue ? 1 : -1);
     });
-
     setSortKey(key);
     setSortOrder(order);
     setFilteredData(sortedData);
@@ -110,7 +109,6 @@ export function MainContent() {
     const endDate = endDateRef.current?.value || '';
     setDateRange({ startDate, endDate });
   };
-  
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -157,6 +155,7 @@ export function MainContent() {
               {tab}
             </button>
           ))}
+           <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
         </div>
       </div>
       {isActive === 'tab-0' && (
