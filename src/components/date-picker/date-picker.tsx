@@ -2,22 +2,35 @@ import React from 'react';
 import './calendar.css';
 
 interface DateRangePickerProps {
-  updateDateRange: (startDate: string, endDate: string) => void;
-  clearDateRange: () => void;
-  dateRange: { startDate: string; endDate: string };
+  updateDateRange: (startDate: string, endDate: string) => void;  // Function to update the date range based on the input values
+  clearDateRange: () => void;   // Function to clear the date range and input fields
+  dateRange: { startDate: string; endDate: string };  // Current date range state
+  startDateRef: React.RefObject<HTMLInputElement>;  // Ref for start date input
+  endDateRef: React.RefObject<HTMLInputElement>;    // Ref for end date input
 }
 
-export function DateRangePicker({ updateDateRange, clearDateRange, dateRange }: DateRangePickerProps) {
+export function DateRangePicker({ 
+  updateDateRange,
+  clearDateRange,
+  dateRange,
+  startDateRef,
+  endDateRef 
+}: DateRangePickerProps) {
+
   const handleFilterClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    const startDateInput = (document.getElementById('startDate') as HTMLInputElement).value;
-    const endDateInput = (document.getElementById('endDate') as HTMLInputElement).value;
-    updateDateRange(startDateInput, endDateInput);
+    // Use refs to get the values directly without relying on DOM queries
+    const startDateInput = startDateRef.current?.value;
+    const endDateInput = endDateRef.current?.value;
+
+    if (startDateInput && endDateInput) {
+      updateDateRange(startDateInput, endDateInput);  // Update the date range state
+    }
   };
 
   const handleClearClick = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    clearDateRange();
+    clearDateRange();  // Clear the date range
   };
 
   return (
@@ -29,6 +42,7 @@ export function DateRangePicker({ updateDateRange, clearDateRange, dateRange }: 
             className="date-range-input"
             type="date"
             id="startDate"
+            ref={startDateRef}
             defaultValue={dateRange.startDate}
           />
         </label>
@@ -38,11 +52,12 @@ export function DateRangePicker({ updateDateRange, clearDateRange, dateRange }: 
             className="date-range-input"
             type="date"
             id="endDate"
+            ref={endDateRef}
             defaultValue={dateRange.endDate}
           />
         </label>
         <button className='set-range-Button' onClick={handleFilterClick}>Filter date range</button>
-        <button className='clear-range-Button' onClick={handleClearClick}>Clear date range</button>
+        <button className='clear-range-Button' onClick={handleClearClick} type="reset">Clear date range</button>
       </form>
     </span>
   );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef  } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import FamilyTreeTable from '../components/table/table';
 import { formatFamilyMemberData } from '../utilities/formatData';
@@ -33,7 +33,8 @@ export function MainContent() {
     endDate: '',
   });
   const tabContent = ['Card view', 'Table view'];
-
+  const startDateRef = useRef<HTMLInputElement | null>(null);
+  const endDateRef = useRef<HTMLInputElement | null>(null);
   const { data, isLoading, error } = useQuery({
     queryKey: ['familyTree'],
     queryFn: fetchFamilyTreeData,
@@ -99,12 +100,17 @@ export function MainContent() {
   };
 
   const clearDateRange = () => {
+    if (startDateRef.current) startDateRef.current.value = '';
+    if (endDateRef.current) endDateRef.current.value = '';
     setDateRange({ startDate: '', endDate: '' });
   };
 
-  const updateDateRange = (startDate: string, endDate: string) => {
+  const updateDateRange = () => {
+    const startDate = startDateRef.current?.value || '';
+    const endDate = endDateRef.current?.value || '';
     setDateRange({ startDate, endDate });
   };
+  
 
   if (isLoading) return <p>Loading...</p>;
   if (error) return <p>Error: {error.message}</p>;
@@ -133,6 +139,8 @@ export function MainContent() {
             updateDateRange={updateDateRange}
             clearDateRange={clearDateRange}
             dateRange={dateRange}
+            startDateRef={startDateRef}
+            endDateRef={endDateRef}
           />
         </div>
         <div className="tab-list" role="tablist" aria-orientation="horizontal">
