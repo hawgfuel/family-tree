@@ -25,6 +25,15 @@ h1{
     font-weight: 600;
 }
 
+.clear-all{
+    color: #fff;
+    background-color:#5a779b;
+    border: none;
+    border-right: solid 1px;
+    padding: 8px;
+    cursor: pointer;
+}
+
 .family-member-name{color:#aa6600;font-weight: 600;}
 .card-view {padding:10px 20px;}
 

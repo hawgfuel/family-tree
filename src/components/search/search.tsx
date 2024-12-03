@@ -29,7 +29,7 @@ const Search = ( {setFilteredData, originalData }: SearchProps) => {
         onChange={handleSearch}
         className='inline-block'
       />
-      <button onClick={handleClear} name='clear' type='reset'>Clear all</button>
+      <button className='clear-all' onClick={handleClear} name='clear' type='reset'>Clear all</button>
     </>
   );
 };
