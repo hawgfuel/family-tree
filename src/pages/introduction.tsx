@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { FamilyMember } from '../common/types';
-import {Alert} from '../components/alert/alert';
 import './introduction.css';
 
 interface IntroductionProps {
@@ -12,7 +11,6 @@ interface IntroductionProps {
         oldestFamilyMember: FamilyMember;
         youngestFamilyMember: FamilyMember;
         familyTimeSpan:number;
-        filteredData: FamilyMember[]; 
     };
   }
   
@@ -25,31 +23,10 @@ interface IntroductionProps {
       oldestFamilyMember,
       youngestFamilyMember,
       familyTimeSpan,
-      filteredData,
     } = introductionData;
-
-    const [alert, setAlert] = useState<boolean | null>(false);
-    const [message, setMessage] = useState<string | null>(null);
-    const [alertType, setAlertType] = useState<string>(''); 
-    //danger,primary,warning,succses
-
-    useEffect(() => {
-        if (alert) {
-            setMessage('Note: Required data clean up. There are some duplicates. Some of the data for the wife is implied by the husband, but needs be added to the familyMember for her in the database.');
-            setAlertType('danger');
-        }
-      }, [alert]);
-
-    const closeAlert = () => {
-        setMessage(null);
-        setAlertType('');
-      };
-
+ 
     return (
         <div className='introduction'>
-            {message &&
-                <Alert message={message} alertType={alertType} onClose={closeAlert} />
-            }
             <h1>Werstler Family Tree</h1>
             <ul className='introduction-data'>
                 <li><span >Total number of family members</span> <span className='accent-color intro-value'>{totalCount}</span></li>
