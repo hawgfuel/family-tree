@@ -3,10 +3,10 @@ import { FamilyMember } from '../../common/types';
 
 interface SearchProps {
   setFilteredData: (key: string) => void;
-  originalData:FamilyMember[];
+  setCardLayout: (layout: 'masonry' | 'tree') => void;
 }
 
-const Search = ( {setFilteredData, originalData }: SearchProps) => {
+const Search = ( {setFilteredData, setCardLayout }: SearchProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -18,6 +18,7 @@ const Search = ( {setFilteredData, originalData }: SearchProps) => {
   const handleClear = () => {
     setSearchTerm('');
     setFilteredData('');
+    setCardLayout('masonry');
   };
 
   return (

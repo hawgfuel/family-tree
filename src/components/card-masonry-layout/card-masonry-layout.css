@@ -6,7 +6,8 @@
     grid-template-rows: masonry;
   }
 
-  .family-card{
+  .masonry-card{
+    position: relative;
     border: 2px solid #c7c7c7; 
     border-radius: 8px;
     box-shadow: 2px 2px 5px rgba(221, 221, 221, 0.3);
@@ -17,16 +18,16 @@
     cursor: pointer;
   }
 
-  .family-card:hover{
+  .masonry-card:hover{
     transform: scale(1.2);
 }
 
-  .family-card h3 {
+  .masonry-card h3 {
     font-size:1em;
     font-weight:600;
   }
 
-  .family-card p {
+  .masonry-card p {
     font-size:.8em;
   }
 

@@ -4,7 +4,8 @@ import FamilyTreeTable from '../components/table/table';
 import { formatFamilyMemberData } from '../utilities/formatData';
 import { Introduction } from './introduction';
 import { DateRangePicker } from '../components/date-picker/date-picker';
-import { Card } from '../components/card/card';
+import { CardMasonryLayout } from '../components/card-masonry-layout/card-masonry-layout';
+import { CardTreeLayout } from '../components/card-tree-layout/card-tree-layout';
 import { fetchFamilyTreeData } from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import { defaultFamilyMember } from '../constants/constants';
@@ -27,6 +28,7 @@ export function MainContent() {
   const [originalData, setOriginalData] = useState<FamilyMember[]>([]);
   const [isActive, setIsActive] = useState<string>('tab-0');
   const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
+  const [cardLayout, setCardLayout] = useState<'masonry' | 'tree'>('masonry');
   const [generationFilter, setGenerationFilter] = useState<number>(1);
   const [rootMemberId, setRootMemberId] = useState<string>('');
   const [dateRange, setDateRange] = useState<{ startDate: string; endDate: string }>({
@@ -119,7 +121,7 @@ export function MainContent() {
         <Introduction introductionData={introductionData} />
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
-          <Search setFilteredData={handleSearch} originalData={originalData} />
+          <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
           <span className="filter-block">
             <label className="filter-label" htmlFor="filter-label">
               Narrow tree by:
@@ -158,9 +160,12 @@ export function MainContent() {
            <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
         </div>
       </div>
-      {isActive === 'tab-0' && (
-        <Card filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} />
-      )}
+      {cardLayout=== 'masonry' && isActive === 'tab-0' &&
+        <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
+      }
+      { cardLayout === "tree" && isActive === 'tab-0' &&
+        <CardTreeLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} />
+      }
       {isActive === 'tab-1' && (
         <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
       )}

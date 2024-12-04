@@ -1,13 +1,15 @@
 import React from 'react';
 import { FamilyMember } from '../../common/types';
-import './card.css';
+import './card-tree-layout.css';
 
 interface CardProps {
   filteredData: FamilyMember[];
   setSelectedFamilyMember: (selected: FamilyMember) => void;
 }
 
-export function Card({ filteredData, setSelectedFamilyMember }: CardProps) {
+export function CardTreeLayout({ filteredData, setSelectedFamilyMember }: CardProps) {
+
+console.log(filteredData);
   const handleMouseEnter = (id: string) => {
     const relative = document.getElementById(id);
     if (relative) {
@@ -30,7 +32,8 @@ export function Card({ filteredData, setSelectedFamilyMember }: CardProps) {
     <div className="card-container">
       {filteredData.length > 0 ? (
         filteredData.map((member) => (
-          <div className="family-card" key={member.id} id={member.id}>
+          <>
+          <div className="tree-card" key={member.id} id={member.id}>
             <h3>
               <button className='parent-li reset-button family-member-name' onClick={() => handleSelectFamilyMember(member)}>
                 {member.FirstName} {member.MiddleName} {member.LastName}
@@ -71,7 +74,10 @@ export function Card({ filteredData, setSelectedFamilyMember }: CardProps) {
               {member.BaptismDate && <li>Baptism Date: {member.BaptismDate}</li>}
               {/* {member.History && <li>History: {member.History}</li>} */}
             </ul>
+            <div className='card-pipe'>&nbsp;</div>
           </div>
+          
+          </>
         ))
       ) : (
         <p>No family members match the search criteria.</p>
