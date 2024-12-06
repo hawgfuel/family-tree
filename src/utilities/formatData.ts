@@ -28,6 +28,7 @@ export const formatFamilyMemberData = (
         ? {
             id: member.Father._id,
             FirstName: member.Father.FirstName,
+            MiddleName: member.Father?.MiddleName?.charAt(0) || '',
             LastName: member.Father.LastName,
           }
         : null,
@@ -36,6 +37,7 @@ export const formatFamilyMemberData = (
         ? {
             id: member.Mother._id,
             FirstName: member.Mother.FirstName,
+            MiddleName: member.Mother?.MiddleName?.charAt(0) || '',
             LastName: member.Mother.LastName,
           }
         : null,
@@ -44,6 +46,7 @@ export const formatFamilyMemberData = (
         ? {
             id: member.MarriedTo._id,
             FirstName: member.MarriedTo.FirstName,
+            MiddleName: member.MarriedTo?.MiddleName?.charAt(0) || '',
             LastName: member.MarriedTo.LastName,
           }
         : null,
@@ -86,26 +89,31 @@ export const formatFamilyMemberData = (
     Children: childrenMap[member.id] || [], // Add children array dynamically
   }));
 
-  // Step 5: Sort the enriched members
-  return enrichedMembers.sort((a, b) => {
-    const dateA = a.BirthDate
-      ? new Date(a.BirthDate).getTime()
-      : a.MarriageDate
-      ? new Date(a.MarriageDate).getTime()
-      : null;
+// Step 5: Sort the enriched members
+return enrichedMembers.sort((a, b) => {
+  const dateA = a.BirthDate
+    ? new Date(a.BirthDate).getTime()
+    : a.MarriageDate
+    ? new Date(a.MarriageDate).getTime()
+    : a.DateDeath
+    ? new Date(a.DateDeath).getTime()
+    : null;
 
-    const dateB = b.BirthDate
-      ? new Date(b.BirthDate).getTime()
-      : b.MarriageDate
-      ? new Date(b.MarriageDate).getTime()
-      : null;
+  const dateB = b.BirthDate
+    ? new Date(b.BirthDate).getTime()
+    : b.MarriageDate
+    ? new Date(b.MarriageDate).getTime()
+    : b.DateDeath
+    ? new Date(b.DateDeath).getTime()
+    : null;
 
-    // Compare BirthDate or MarriageDate if available
-    if (dateA && dateB) return dateA - dateB;
-    if (dateA) return -1; // a has a valid date but b does not
-    if (dateB) return 1;  // b has a valid date but a does not
+  // Compare BirthDate, MarriageDate, or DateDeath if available
+  if (dateA && dateB) return dateA - dateB;
+  if (dateA) return -1; // a has a valid date but b does not
+  if (dateB) return 1;  // b has a valid date but a does not
 
-    // Fallback to original order based on index
-    return a.index - b.index;
-  });
+  // Fallback to original order based on index
+  return a.index - b.index;
+});
+
 };

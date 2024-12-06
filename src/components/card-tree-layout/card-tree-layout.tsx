@@ -1,5 +1,6 @@
-import React from 'react';
+import React,  { useEffect } from 'react';
 import { FamilyMember } from '../../common/types';
+import {Card} from '../card/card';
 import './card-tree-layout.css';
 
 interface CardProps {
@@ -28,60 +29,34 @@ console.log(filteredData);
     setSelectedFamilyMember(member);
   };
 
+  const familyArr = [...filteredData];
+  const parentArr = familyArr.slice(0, 2); 
+  familyArr.splice(0, 2);
+
+  useEffect(() => { 
+    if (familyArr) {
+        const siblingBorder = document.getElementById('siblingBorder') as HTMLElement | null;
+        const newWidth = familyArr.length * 200; // Example calculation
+        if (siblingBorder) {
+            siblingBorder.style.width = `${newWidth}px`;
+        }
+    }
+}, [familyArr]);
+
   return (
-    <div className="card-container">
-      {filteredData.length > 0 ? (
-        filteredData.map((member) => (
-          <>
-          <div className="tree-card" key={member.id} id={member.id}>
-            <h3>
-              <button className='parent-li reset-button family-member-name' onClick={() => handleSelectFamilyMember(member)}>
-                {member.FirstName} {member.MiddleName} {member.LastName}
-              </button>
-            </h3>
-            <ul className="card-member">
-            {member.BirthDate && <li>Born: {member.BirthDate}</li>}
-            {member.DateDeath && <li>Died: {member.DateDeath}</li>}
-              {member.MarriedTo && (
-                <li
-                  className="parent-li"
-                  onMouseEnter={() => member.MarriedTo?.id && handleMouseEnter(member.MarriedTo.id)}
-                  onMouseLeave={() => member.MarriedTo?.id && handleMouseLeave(member.MarriedTo.id)}
-                >
-                  Married to: {member.MarriedTo.FirstName} {member.MarriedTo.MiddleName} {member.MarriedTo.LastName}
-                </li>
-              )}
-              {member.MarriageDate && <li>Marriage date: {member.MarriageDate}</li>}
-              {member.Father && (
-                <li
-                  className="parent-li"
-                  onMouseEnter={() => member.Father?.id && handleMouseEnter(member.Father.id)}
-                  onMouseLeave={() => member.Father?.id && handleMouseLeave(member.Father.id)}
-                >
-                  Father: {member.Father.FirstName} {member.Father.LastName}
-                </li>
-              )}
-              {member.Mother && (
-                <li
-                  className="parent-li"
-                  onMouseEnter={() => member.Mother?.id && handleMouseEnter(member.Mother.id)}
-                  onMouseLeave={() => member.Mother?.id && handleMouseLeave(member.Mother.id)}
-                >
-                  Mother: {member.Mother.FirstName} {member.Mother.LastName}
-                </li>
-              )}
-              {member.Church && <li>Church: {member.Church}</li>}
-              {member.BaptismDate && <li>Baptism Date: {member.BaptismDate}</li>}
-              {/* {member.History && <li>History: {member.History}</li>} */}
-            </ul>
-            <div className='card-pipe'>&nbsp;</div>
-          </div>
-          
-          </>
-        ))
-      ) : (
-        <p>No family members match the search criteria.</p>
-      )}
-    </div>
+    <>
+        <div className='card-tree-container card-tree-row'>
+            <Card data={parentArr} pipe={'card-pipe-bottom'} siblingRow={false} />
+        </div>
+        {familyArr && (
+            <div className='sibling-border-container'>
+                <div id="siblingBorder" className="border-top">&nbsp;</div>
+            </div>    
+        )
+        }
+        <div className='siblings card-tree-row bottom padding-bottom-lg'>
+            <Card data={familyArr}  pipe={'card-pipe-top'} siblingRow={true} />
+        </div>
+    </>
   );
 }

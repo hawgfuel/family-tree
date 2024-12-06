@@ -1,10 +1,22 @@
+    .card-tree-container{
+        display: grid;
+        grid-template-columns: repeat(2, 200px); /* Two columns, each 200px wide */
+        justify-content: center; /* Center the grid horizontally */
+        align-items: center; /* Center the grid vertically (if needed) */
+        gap: 20px; /* Optional spacing between the divs */
+        height: 100%; /* Optional, ensures full height if needed */
+        align-items: stretch;
+    }
+    
+    .card-tree-container h3 {font-size: .9em;margin: .2em 0 .6em 0}
 
-.card-container {
-    display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    grid-template-rows: masonry;
-  }
+    .siblings {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 200px); /* Dynamically adjusts columns */
+        justify-content: center; /* Centers the grid horizontally */
+        gap: 20px; /* Optional spacing between items */
+        width: 100%; /* Ensures the parent fills available space */
+      }
 
   .tree-card{
     position: relative;
@@ -18,16 +30,24 @@
     cursor: pointer;
   }
 
-  .card-pipe {
+  .card-pipe-top {
     position: absolute;
     width: 2px;
-    height: 50px; /* Length of the line */
+    height: 30px; /* Length of the line */
     background-color: #c7c7c7; /* Visible line */
-    bottom: -50px; /* Start below the div */
+    top: -30px; /* Start below the div */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Offset for exact centering */
   }
-
+  .card-pipe-bottom {
+    position: absolute;
+    width: 2px;
+    height: 30px; /* Length of the line */
+    background-color: #c7c7c7; /* Visible line */
+    bottom: -30px; /* Start below the div */
+    left: 50%; /* Center horizontally */
+    transform: translateX(-50%); /* Offset for exact centering */
+  }
   .tree-card:hover{
     transform: scale(1.2);
 }
@@ -41,8 +61,6 @@
     font-size:.8em;
   }
 
-.card-container h3 {font-size: .9em;margin: .2em 0 .6em 0}
-
 .card-member {
     margin-top: 4px;
     font-size: .8em;
@@ -55,6 +73,22 @@
   color: #0084f0 ;
 }
 
+.sibling-border-container {display: grid;place-items: center;width:100%;height:4px;margin: 0 auto}
+
+#siblingBorder {
+    position:absolute;
+    margin:auto;
+    height:1px;
+    top:-30px;
+    left: 50%;
+    background-color:#c7c7c7;
+    transform: translateX(-50%)
+}
+
+.siblings{position: relative;margin-top:30px;border-top:solid 1px #c7c7c7;padding-top:30px;}
+
+
 .highlight {
   background-color: #cfe8fc ;
 }
+

@@ -3,6 +3,7 @@ import { FamilyMember } from '../common/types';
 export const defaultFamilyMember: FamilyMember = {
     FirstName: 'Unknown',
     LastName: '',
+    MiddleName: '',
     BirthDate: '',
     BirthPlace: '',
     id: '',

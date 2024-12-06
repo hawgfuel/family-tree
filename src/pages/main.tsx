@@ -51,7 +51,7 @@ export function MainContent() {
   }, [data]);
 
   useEffect(() => {
-    if (data && rootMemberId) {
+    if (filteredData && rootMemberId) {
       const newFilteredData = filterByGenerations(rootMemberId, filteredData, generationFilter);
       setFilteredData(newFilteredData);
     }
@@ -122,19 +122,6 @@ export function MainContent() {
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
-          <span className="filter-block">
-            <label className="filter-label" htmlFor="filter-label">
-              Narrow tree by:
-            </label>
-            <select
-              id="generationFilter"
-              value={generationFilter}
-              onChange={(e) => setGenerationFilter(Number(e.target.value))}
-            >
-              <option value={1}>1 Generation</option>
-              <option value={2}>2 Generations</option>
-            </select>
-          </span>
           <DateRangePicker
             updateDateRange={updateDateRange}
             clearDateRange={clearDateRange}
@@ -160,6 +147,7 @@ export function MainContent() {
            <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
         </div>
       </div>
+      <div className='card-table'>
       {cardLayout=== 'masonry' && isActive === 'tab-0' &&
         <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
       }
@@ -169,6 +157,7 @@ export function MainContent() {
       {isActive === 'tab-1' && (
         <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
       )}
+      </div>
     </div>
   );
 }
