@@ -53,7 +53,7 @@ return (
                   onMouseEnter={() => member.Father?.id && handleMouseEnter(member.Father.id)}
                   onMouseLeave={() => member.Father?.id && handleMouseLeave(member.Father.id)}
                 >
-                  Father: {member.Father.FirstName} {member.Father.LastName}
+                  Father: {member.Father.FirstName} {member.Father.MiddleName} {member.Father.LastName}
                 </li>
               )}
               {member.Mother && (
@@ -62,7 +62,7 @@ return (
                   onMouseEnter={() => member.Mother?.id && handleMouseEnter(member.Mother.id)}
                   onMouseLeave={() => member.Mother?.id && handleMouseLeave(member.Mother.id)}
                 >
-                  Mother: {member.Mother.FirstName} {member.Mother.LastName}
+                  Mother: {member.Mother.FirstName} {member.Mother.MiddleName} {member.Mother.LastName}
                 </li>
               )}
               {member.Church && <li>Church: {member.Church}</li>}
