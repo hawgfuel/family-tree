@@ -17,7 +17,7 @@ import {
   getOldestFamilyMember,
   getYoungestFamilyMember,
 } from '../utilities/utilities';
-import { filterByGenerations } from '../utilities/generations-transform';
+import { getImmediateFamily } from '../utilities/generations-transform';
 import {downloadCSV} from '../components/download-csv/download-csv';
 import './main.css';
 
@@ -29,7 +29,6 @@ export function MainContent() {
   const [isActive, setIsActive] = useState<string>('tab-0');
   const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
   const [cardLayout, setCardLayout] = useState<'masonry' | 'tree'>('masonry');
-  const [generationFilter, setGenerationFilter] = useState<number>(1);
   const [rootMemberId, setRootMemberId] = useState<string>('');
   const [dateRange, setDateRange] = useState<{ startDate: string; endDate: string }>({
     startDate: '',
@@ -51,11 +50,17 @@ export function MainContent() {
   }, [data]);
 
   useEffect(() => {
-    if (filteredData && rootMemberId) {
-      const newFilteredData = filterByGenerations(rootMemberId, filteredData, generationFilter);
+    if (cardLayout === 'masonry') {
+      setRootMemberId('');
+    }
+  }, [cardLayout]);
+
+  useEffect(() => {
+    if (filteredData && rootMemberId !== '') {
+      const newFilteredData = getImmediateFamily(rootMemberId, filteredData);
       setFilteredData(newFilteredData);
     }
-  }, [rootMemberId, generationFilter]);
+  }, [rootMemberId]);
 
   useEffect(() => {
     if (selectedFamilyMember) {

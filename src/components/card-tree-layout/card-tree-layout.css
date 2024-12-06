@@ -31,6 +31,7 @@
   }
 
   .card-pipe-top {
+    display:none;
     position: absolute;
     width: 2px;
     height: 30px; /* Length of the line */
@@ -42,15 +43,12 @@
   .card-pipe-bottom {
     position: absolute;
     width: 2px;
-    height: 30px; /* Length of the line */
+    height: 32px; /* Length of the line */
     background-color: #c7c7c7; /* Visible line */
-    bottom: -30px; /* Start below the div */
+    bottom: -34px; /* Start below the div */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Offset for exact centering */
   }
-  .tree-card:hover{
-    transform: scale(1.2);
-}
 
   .tree-card h3 {
     font-size:1em;

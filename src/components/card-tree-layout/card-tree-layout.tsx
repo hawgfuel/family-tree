@@ -36,7 +36,7 @@ console.log(filteredData);
   useEffect(() => { 
     if (familyArr) {
         const siblingBorder = document.getElementById('siblingBorder') as HTMLElement | null;
-        const newWidth = familyArr.length * 200; // Example calculation
+        const newWidth = familyArr.length * 200;
         if (siblingBorder) {
             siblingBorder.style.width = `${newWidth}px`;
         }

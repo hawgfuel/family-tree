@@ -25,9 +25,8 @@ export function Card({data, pipe, siblingRow}: CardProps){
 
 return (
     <>
-      {data.length > 1 ? (
+      {data.length > 0 ? (
         data.map((member) => (
-          <>
           <div className="tree-card" key={member.id} id={member.id}>
             <h3>
               <button className='parent-li reset-button family-member-name'>
@@ -71,8 +70,6 @@ return (
             </ul>
             <div className={pipe}>&nbsp;</div>
           </div>
-          
-          </>
         ))
       ) : (
         <p>No family members match the search criteria.</p>

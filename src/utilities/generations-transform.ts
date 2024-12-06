@@ -1,46 +1,45 @@
-
 import { FamilyMember } from '../common/types';
-export function filterByGenerations(
+
+export function getImmediateFamily(
   rootMemberId: string,
-  allMembers: FamilyMember[],
-  generations: number
+  allMembers: FamilyMember[]
 ): FamilyMember[] {
   const visited = new Set<string>();
   const result = new Set<FamilyMember>();
 
-  function traverse(memberId: string, currentGeneration: number) {
-    if (currentGeneration > generations || visited.has(memberId)) return;
+  function traverse(memberId: string) {
+    if (visited.has(memberId)) return;
 
     const member = allMembers.find((m) => m.id === memberId);
     if (!member) return;
 
     visited.add(memberId);
+    result.add(member);
 
-    // Only add member if within the allowed generations
-    if (currentGeneration <= generations) {
-      result.add(member);
+    // Add father and mother if available
+    if (member.Father?.id && !visited.has(member.Father.id)) {
+      const father = allMembers.find((m) => m.id === member.Father?.id);
+      if (father) {
+        result.add(father);
+        visited.add(father.id);
+      }
     }
 
-    // Traverse parents only if within generation limits
-    if (currentGeneration < generations) {
-      if (member.Father?.id) traverse(member.Father.id, currentGeneration + 1);
-      if (member.Mother?.id) traverse(member.Mother.id, currentGeneration + 1);
+    if (member.Mother?.id && !visited.has(member.Mother.id)) {
+      const mother = allMembers.find((m) => m.id === member.Mother?.id);
+      if (mother) {
+        result.add(mother);
+        visited.add(mother.id);
+      }
     }
 
-    // Traverse children only if within generation limits
-    if (currentGeneration < generations && member.Children) {
-      member.Children.forEach((child) =>
-        traverse(child.id, currentGeneration + 1)
-      );
-    }
-
-    // Add siblings only if within the same generation
-    if (currentGeneration <= generations && (member.Father?.id || member.Mother?.id)) {
+    // Add siblings (children of the father or mother)
+    if (member.Father?.id || member.Mother?.id) {
       allMembers
         .filter(
           (m) =>
             (m.Father?.id === member.Father?.id || m.Mother?.id === member.Mother?.id) &&
-            m.id !== member.id &&
+            m.id !== member.id && // Exclude the current member
             !visited.has(m.id)
         )
         .forEach((sibling) => {
@@ -48,19 +47,19 @@ export function filterByGenerations(
           visited.add(sibling.id);
         });
     }
-
-    // Add MarriedTo member only if within the same generation
-    if (currentGeneration <= generations && member.MarriedTo?.id && !visited.has(member.MarriedTo.id)) {
-      const spouse = allMembers.find((m) => m.id === member.MarriedTo?.id);
-      if (spouse) {
-        result.add(spouse);
-        visited.add(spouse.id);
-      }
-    }
   }
 
-  traverse(rootMemberId, 0);
+  traverse(rootMemberId);
 
-  // Convert result set to an array
-  return Array.from(result);
+  // Convert result set to an array and return it
+  const returnVal = Array.from(result);
+  if (returnVal.length > 0) {
+    const firstItem = returnVal[0];
+  
+    // Remove the first item and add it to index 2
+    returnVal.splice(0, 1); // Removes the item at index 0
+    returnVal.splice(2, 0, firstItem); // Inserts it at index 2
+  }
+
+  return returnVal;
 }
