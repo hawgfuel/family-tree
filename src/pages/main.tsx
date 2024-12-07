@@ -149,6 +149,10 @@ export function MainContent() {
               {tab}
             </button>
           ))}
+
+        {isActive === 'tab-0' &&
+            <span className='csv-download-container'>Click the family member name in the card to view the immediate family tree. &mdash;</span> 
+          }
            <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
         </div>
       </div>

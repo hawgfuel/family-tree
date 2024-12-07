@@ -37,7 +37,7 @@ h1{
 .family-member-name{color:#aa6600;font-weight: 600;}
 .card-view {padding:10px 20px;}
 
-.card-table {padding-left:20px;padding-right: 20px;}
+.card-table {padding-left:20px;padding-right: 20px;background-color: #fff;}
 /* Table Styles */
 
 .content-wrapper{

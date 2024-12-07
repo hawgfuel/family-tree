@@ -30,7 +30,7 @@ const Search = ( {setFilteredData, setCardLayout }: SearchProps) => {
         onChange={handleSearch}
         className='inline-block'
       />
-      <button className='clear-all' onClick={handleClear} name='clear' type='reset'>Clear all</button>
+      <button className='clear-all' onClick={handleClear} name='clear' type='reset'>Clear all filters</button>
     </>
   );
 };
