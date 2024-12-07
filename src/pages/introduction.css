@@ -45,7 +45,19 @@
 }
 
 .intro-value {font-weight: normal;}
+@media (max-width: 1300px) {
 
+.introduction-header{
+    width:100%;    
+    background-image: url('https://www.guicoder.com/werstlerfamily/images/historic-photo-collage-web.jpg');
+    background-size:600px;
+    background-repeat: no-repeat;
+    background-position: top;
+    height: 600px; 
+}
+.introduction-header h1 {width:100%;padding-top:300px;color:#AA6600}
+.introduction-paragraph{width:100%;background-color: #fff;font-size:1em;}
+}
 @media (max-width: 767px) {
     .introduction-data{
         display: block;
