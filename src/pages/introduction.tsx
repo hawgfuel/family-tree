@@ -32,7 +32,7 @@ interface IntroductionProps {
                 <h1>Werstler Family Tree</h1>
                 <p className='introduction-paragraph'>This is a collection of data of ancestors with the Werstler surname. 
                     I acquired this information from my uncle and my dad. They gained this information from others who researched this before them and contributed to it as they could. 
-                    The photo collage is a collection of photos I was given, however there is little documentation on who is in the photos.</p>
+                    </p>
                 <p className='introduction-paragraph'>There are some errors in the data as it was entered into the database by hand, 
                         but I plan to clean up the data where I can.
                         Currently there are no living relatives in the data below, but I hope to add those relatives with their approval. This is a work in progress. I hope to continue building the site.</p>
