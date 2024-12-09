@@ -1,3 +1,4 @@
+
 export const formatFamilyMemberData = (
   members: any[],
   dateRange: { startDate?: string; endDate?: string } = {}
@@ -57,12 +58,12 @@ export const formatFamilyMemberData = (
     ? formattedMembers.filter((member) => {
         const birthDate = member.BirthDate ? new Date(member.BirthDate) : null;
         const marriageDate = member.MarriageDate ? new Date(member.MarriageDate) : null;
-
+        const dateOfDeath = member.DateDeath ? new Date(member.DateDeath) : null;
         // Check if any date falls within the range
         const isWithinRange = (date: Date | null) =>
           date && parsedStartDate && parsedEndDate && date >= parsedStartDate && date <= parsedEndDate;
 
-        return isWithinRange(birthDate) || isWithinRange(marriageDate);
+        return isWithinRange(birthDate) || isWithinRange(marriageDate) || isWithinRange(dateOfDeath);
       })
     : formattedMembers;
 
