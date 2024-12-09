@@ -17,7 +17,7 @@ export const formatFamilyMemberData = (
   // Step 2: Map members to a consistent format
   const formattedMembers = members.map((member, index) => ({
     ...member,
-    id: member._id,
+    id: member._id || member.id,
     History: member.History,
     BirthDate: member.BirthDate ? new Date(member.BirthDate).toLocaleDateString('en-US') : '',
     BaptismDate: member.BaptismDate ? new Date(member.BaptismDate).toLocaleDateString('en-US') : '',
@@ -26,7 +26,7 @@ export const formatFamilyMemberData = (
     Father:
       typeof member.Father === 'object' && member.Father
         ? {
-            id: member.Father._id,
+            id: member.Father._id || member.Father.id,
             FirstName: member.Father.FirstName,
             MiddleName: member.Father?.MiddleName?.charAt(0) || '',
             LastName: member.Father.LastName,
@@ -35,7 +35,7 @@ export const formatFamilyMemberData = (
     Mother:
       typeof member.Mother === 'object' && member.Mother
         ? {
-            id: member.Mother._id,
+            id: member.Mother._id || member.Mother.id,
             FirstName: member.Mother.FirstName,
             MiddleName: member.Mother?.MiddleName?.charAt(0) || '',
             LastName: member.Mother.LastName,
@@ -44,7 +44,7 @@ export const formatFamilyMemberData = (
     MarriedTo:
       typeof member.MarriedTo === 'object' && member.MarriedTo
         ? {
-            id: member.MarriedTo._id,
+            id: member.MarriedTo._id || member.MarriedTo.id,
             FirstName: member.MarriedTo.FirstName,
             MiddleName: member.MarriedTo?.MiddleName?.charAt(0) || '',
             LastName: member.MarriedTo.LastName,

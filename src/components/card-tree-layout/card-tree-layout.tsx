@@ -1,6 +1,7 @@
 import React,  { useEffect } from 'react';
 import { FamilyMember } from '../../common/types';
 import {Card} from '../card/card';
+import '../card/card.css';
 import './card-tree-layout.css';
 
 interface CardProps {
@@ -16,17 +17,6 @@ console.log(filteredData);
     if (relative) {
       relative.classList.add('highlight'); // Add highlight class
     }
-  };
-
-  const handleMouseLeave = (id: string) => {
-    const relative = document.getElementById(id);
-    if (relative) {
-      relative.classList.remove('highlight'); // Remove highlight class
-    }
-  };
-
-  const handleSelectFamilyMember = (member: FamilyMember) => {
-    setSelectedFamilyMember(member);
   };
 
   const familyArr = [...filteredData];

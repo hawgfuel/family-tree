@@ -29,7 +29,6 @@ export function MainContent() {
   const [isActive, setIsActive] = useState<string>('tab-0');
   const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
   const [cardLayout, setCardLayout] = useState<'masonry' | 'tree'>('masonry');
-  const [rootMemberId, setRootMemberId] = useState<string>('');
   const [dateRange, setDateRange] = useState<{ startDate: string; endDate: string }>({
     startDate: '',
     endDate: '',
@@ -50,27 +49,17 @@ export function MainContent() {
   }, [data]);
 
   useEffect(() => {
-    if (cardLayout === 'masonry') {
-      setRootMemberId('');
-    }
-  }, [cardLayout]);
-
-  useEffect(() => {
-    if (filteredData && rootMemberId !== '') {
-      const newFilteredData = getImmediateFamily(rootMemberId, filteredData);
-      setFilteredData(newFilteredData);
-    }
-  }, [rootMemberId]);
-
-  useEffect(() => {
     if (selectedFamilyMember) {
-      setRootMemberId(selectedFamilyMember.id);
+      const newFilteredData = getImmediateFamily(selectedFamilyMember.id, filteredData);
+      setFilteredData(newFilteredData);
     }
   }, [selectedFamilyMember]);
 
   useEffect(() => {
-    const updatedData = formatFamilyMemberData(originalData, dateRange);
-    setFilteredData(updatedData);
+    if(originalData.length > 0){
+      const updatedData = formatFamilyMemberData(originalData, dateRange);
+      setFilteredData(updatedData);
+    }
   }, [originalData, dateRange]);
 
   const introductionData = useMemo(() => {

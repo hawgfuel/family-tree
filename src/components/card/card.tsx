@@ -27,8 +27,8 @@ return (
     <>
       {data.length > 0 ? (
         data.map((member) => (
-          <div className="tree-card" key={member.id} id={member.id}>
-            <h3>
+          <div className="member-card" key={member.id} id={member.id}>
+            <h3 className='card-header'>
               <button className='parent-li reset-button family-member-name'>
                 {member.FirstName} {member.MiddleName} {member.LastName}
               </button>

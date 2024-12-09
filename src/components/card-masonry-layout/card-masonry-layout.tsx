@@ -1,5 +1,6 @@
 import React from 'react';
 import { FamilyMember } from '../../common/types';
+import '../card/card.css';
 import './card-masonry-layout.css';
 
 interface CardProps {
@@ -33,8 +34,8 @@ export function CardMasonryLayout({ filteredData, setSelectedFamilyMember, setCa
     <div className="card-container padding-bottom-lg fade-in">
       {filteredData.length > 0 ? (
         filteredData.map((member) => (
-          <div className="masonry-card" key={member.id} id={member.id}>
-            <h3>
+          <div className="member-card" key={member.id} id={member.id}>
+            <h3 className='card-header'>
               <button title="Click name to see family tree" className='parent-li reset-button family-member-name' onClick={() => handleSelectFamilyMember(member)}>
                 {member.FirstName} {member.MiddleName} {member.LastName}
               </button>
@@ -52,6 +53,7 @@ export function CardMasonryLayout({ filteredData, setSelectedFamilyMember, setCa
                 </li>
               )}
               {member.MarriageDate && <li>Marriage date: {member.MarriageDate}</li>}
+              {member.MaidenName && <li>Maiden name: {member.MaidenName}</li>}
               {member.Father && (
                 <li
                   className="parent-li"
