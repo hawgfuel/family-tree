@@ -121,7 +121,7 @@ export function MainContent() {
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="content-wrapper">
+    <div className="content-wrapper fade-in">
       <div className="content-head">
         <Introduction introductionData={introductionData} />
         <div className="filter-container">
@@ -153,19 +153,20 @@ export function MainContent() {
         {isActive === 'tab-0' &&
             <span className='csv-download-container'>Click the family member name in the card to view the immediate family tree. &mdash;</span> 
           }
-           <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
+            <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
+            &mdash;<span>&nbsp;Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
         </div>
       </div>
       <div className='card-table'>
-      {cardLayout=== 'masonry' && isActive === 'tab-0' &&
-        <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
-      }
-      { cardLayout === "tree" && isActive === 'tab-0' &&
-        <CardTreeLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} />
-      }
-      {isActive === 'tab-1' && (
-        <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
-      )}
+        {cardLayout=== 'masonry' && isActive === 'tab-0' &&
+          <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
+        }
+        { cardLayout === "tree" && isActive === 'tab-0' &&
+          <CardTreeLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} />
+        }
+        {isActive === 'tab-1' && (
+          <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+        )}
       </div>
     </div>
   );

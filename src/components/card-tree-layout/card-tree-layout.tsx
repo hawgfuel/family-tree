@@ -44,7 +44,7 @@ console.log(filteredData);
 }, [familyArr]);
 
   return (
-    <>
+    <div className='fade-in'>
         <div className='card-tree-container card-tree-row'>
             <Card data={parentArr} pipe={'card-pipe-bottom'} siblingRow={false} />
         </div>
@@ -57,6 +57,6 @@ console.log(filteredData);
         <div className='siblings card-tree-row bottom padding-bottom-lg'>
             <Card data={familyArr}  pipe={'card-pipe-top'} siblingRow={true} />
         </div>
-    </>
+    </div>
   );
 }

@@ -17,7 +17,7 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
   };
 
   return (
-    <div>
+    <div className='fade-in'>
     <div className='showHorizontalLabel'>Scroll horizontally {'>>'}</div>
     <table className="fl-table">
       <thead>

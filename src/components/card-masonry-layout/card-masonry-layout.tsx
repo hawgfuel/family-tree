@@ -30,7 +30,7 @@ export function CardMasonryLayout({ filteredData, setSelectedFamilyMember, setCa
   };
 
   return (
-    <div className="card-container padding-bottom-lg">
+    <div className="card-container padding-bottom-lg fade-in">
       {filteredData.length > 0 ? (
         filteredData.map((member) => (
           <div className="masonry-card" key={member.id} id={member.id}>
