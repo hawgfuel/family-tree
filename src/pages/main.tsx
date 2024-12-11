@@ -127,20 +127,22 @@ export function MainContent() {
             endDateRef={endDateRef}
           />
         </div>
-        <div className="tab-list" role="tablist" aria-orientation="horizontal">
-          {tabContent.map((tab, index) => (
-            <button
-              key={index}
-              className={`button-pivot ${isActive === `tab-${index}` ? 'isActive' : ''}`}
-              role="tab"
-              type="button"
-              aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}
-              id={`tab-${index}`}
-              onClick={() => setIsActive(`tab-${index}`)}
-            >
-              {tab}
-            </button>
-          ))}
+        <div className="tab-list">
+          <span role="tablist">
+            {tabContent.map((tab, index) => (
+              <button
+                key={index}
+                className={`button-pivot ${isActive === `tab-${index}` ? 'isActive' : ''}`}
+                role="tab"
+                type="button"
+                aria-selected={isActive === `tab-${index}` ? 'true' : 'false'}
+                id={`tab-${index}`}
+                onClick={() => setIsActive(`tab-${index}`)}
+              >
+                {tab}
+              </button>
+            ))}
+          </span>
             <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
             &mdash;<span>&nbsp;Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
         </div>
