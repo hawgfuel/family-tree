@@ -145,6 +145,7 @@ select {
 /* Responsive */
 @media (max-width: 767px) {
     .content-head {padding:0 10px;}
+    .tab-list {margin-top:2px; padding-top:10px; padding-bottom:10px;}
     .caption{float:none;}
     .filter-instructions{font-size:1em;font-weight:500;color:#5A779B}
     .button-pivot{
