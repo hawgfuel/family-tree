@@ -113,6 +113,9 @@ export function MainContent() {
     <div className="content-wrapper fade-in">
       <div className="content-head">
         <Introduction introductionData={introductionData} />
+        {isActive === 'tab-0' &&
+            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree.</p> 
+          }
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
@@ -138,10 +141,6 @@ export function MainContent() {
               {tab}
             </button>
           ))}
-
-        {isActive === 'tab-0' &&
-            <span className='csv-download-container'>Click the family member name in the card to view the immediate family tree. &mdash;</span> 
-          }
             <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
             &mdash;<span>&nbsp;Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
         </div>

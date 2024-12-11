@@ -1,5 +1,4 @@
 .date-range-DateRangePicker {
-    display: inline-block !important;
     font-family: Arial, sans-serif;
     color: #333;
     width:926px;
@@ -9,7 +8,6 @@
   }
 
   .date-range-DateRangePicker .date-picker-form{
-    display: inline-block !important;
     width:auto;
   }
 

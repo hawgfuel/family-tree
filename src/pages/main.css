@@ -102,6 +102,8 @@ select {
 }
 .tab-list, .tab-list span{font-size: .9em;}
 
+.filter-instructions{font-size:1.4em;font-weight:500;color:#5A779B}
+
 .filter-header{margin:0 0 0 8px;display:inline-block;}
 
 .filter-block {margin-left:8px;display:inline-block}
@@ -116,7 +118,7 @@ select {
     cursor:pointer;
 }
 
-.caption{font-size:.7em;margin-top:0;}
+.caption{display:block;float:right;font-size:.7em;margin-top:0;}
 .margin-top-lg {margin-top:40px;}
 .padding-bottom-lg {padding-bottom:40px;}
 .email-link {text-decoration: none;}
@@ -143,6 +145,8 @@ select {
 /* Responsive */
 @media (max-width: 767px) {
     .content-head {padding:0 10px;}
+    .caption{float:none;}
+    .filter-instructions{font-size:1em;font-weight:500;color:#5A779B}
     .button-pivot{
         display:block;
         width:100%;

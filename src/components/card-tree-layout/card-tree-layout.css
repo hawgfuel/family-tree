@@ -8,14 +8,6 @@
         align-items: stretch;
     }
 
-    .siblings {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, 200px); /* Dynamically adjusts columns */
-        justify-content: center; /* Centers the grid horizontally */
-        gap: 20px; /* Optional spacing between items */
-        width: 100%; /* Ensures the parent fills available space */
-      }
-
   .card-pipe-top {
     display:none;
     position: absolute;
@@ -34,6 +26,14 @@
     bottom: -34px; /* Start below the div */
     left: 50%; /* Center horizontally */
     transform: translateX(-50%); /* Offset for exact centering */
+  }
+
+  .siblings {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, 200px); /* Dynamically adjusts columns */
+    justify-content: center; /* Centers the grid horizontally */
+    gap: 20px; /* Optional spacing between items */
+    width: 100%; /* Ensures the parent fills available space */
   }
 
 .sibling-border-container {
