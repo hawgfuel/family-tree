@@ -11,14 +11,6 @@ interface CardProps {
 
 export function CardTreeLayout({ filteredData, setSelectedFamilyMember }: CardProps) {
 
-console.log(filteredData);
-  const handleMouseEnter = (id: string) => {
-    const relative = document.getElementById(id);
-    if (relative) {
-      relative.classList.add('highlight'); // Add highlight class
-    }
-  };
-
   const familyArr = [...filteredData];
   const parentArr = familyArr.slice(0, 2); 
   familyArr.splice(0, 2);
@@ -36,7 +28,7 @@ console.log(filteredData);
   return (
     <div className='fade-in'>
         <div className='card-tree-container card-tree-row'>
-            <Card data={parentArr} pipe={'card-pipe-bottom'} siblingRow={false} />
+            <Card data={parentArr} pipe={'card-pipe-bottom'} siblingRow={false} setSelectedFamilyMember={setSelectedFamilyMember} />
         </div>
         {familyArr && (
             <div className='sibling-border-container'>
@@ -45,7 +37,7 @@ console.log(filteredData);
         )
         }
         <div className='siblings card-tree-row bottom padding-bottom-lg'>
-            <Card data={familyArr}  pipe={'card-pipe-top'} siblingRow={true} />
+            <Card data={familyArr}  pipe={'card-pipe-top'} siblingRow={true} setSelectedFamilyMember={setSelectedFamilyMember} />
         </div>
     </div>
   );

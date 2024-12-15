@@ -25,9 +25,9 @@
 h3.card-header {font-size: .9em;margin: .2em 0 .6em 0}
 
 .parent-li:hover {
-  cursor: pointer;
   color: #0084f0 ;
 }
+.parent-li:hover.no-click {color:#aa6600;cursor:default;}
 
   .member-card h3 {
     font-size:1em;

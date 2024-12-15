@@ -50,7 +50,7 @@ export function MainContent() {
 
   useEffect(() => {
     if (selectedFamilyMember) {
-      const newFilteredData = getImmediateFamily(selectedFamilyMember.id, filteredData);
+      const newFilteredData = getImmediateFamily(selectedFamilyMember.id, originalData);
       setFilteredData(newFilteredData);
     }
   }, [selectedFamilyMember]);
@@ -113,9 +113,6 @@ export function MainContent() {
     <div className="content-wrapper fade-in">
       <div className="content-head">
         <Introduction introductionData={introductionData} />
-        {isActive === 'tab-0' &&
-            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree.</p> 
-          }
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
@@ -148,6 +145,9 @@ export function MainContent() {
         </div>
       </div>
       <div className='card-table'>
+        {isActive === 'tab-0' &&
+            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. When filtered by family, click on the father's name to see his siblings and parents.</p> 
+          }
         {cardLayout=== 'masonry' && isActive === 'tab-0' &&
           <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
         }

@@ -35,6 +35,8 @@ h1{
 }
 
 .family-member-name{color:#aa6600;font-weight: 600;}
+.click-ancestor {cursor:pointer;}
+.no-click{cursor:default;}
 .card-view {padding:10px 20px;}
 
 .card-table {padding-left:20px;padding-right: 20px;background-color: #fff;}
@@ -102,7 +104,7 @@ select {
 }
 .tab-list, .tab-list span{font-size: .9em;}
 
-.filter-instructions{font-size:1.4em;font-weight:500;color:#5A779B}
+.filter-instructions{font-size:1.2em;font-weight:500;color:#5A779B;margin:0px 0px 20px 0;text-align: center;}
 
 .filter-header{margin:0 0 0 8px;display:inline-block;}
 
@@ -115,7 +117,6 @@ select {
     margin:0;
     border:0;
     background-color: transparent;
-    cursor:pointer;
 }
 
 .caption{display:block;float:right;font-size:.7em;margin-top:0;}
