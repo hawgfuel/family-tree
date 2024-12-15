@@ -54,7 +54,7 @@ export function Gallery() {
         ))}
 
         {selectedImage && (
-          <div className="enlarged-image-overlay" onClick={handleCloseImage}>
+          <div className="enlarged-image-overlay fade-in" onClick={handleCloseImage}>
             <img
               src={getImageUrl(selectedImage)}
               alt="Enlarged"
