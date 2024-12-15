@@ -1,0 +1,39 @@
+.gallery-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-rows: masonry;
+  }
+  .gallery-container img {
+    width: 100%; /* Scale images to 100% of the container width */
+    height: auto; /* Maintain aspect ratio */
+    object-fit: cover; /* Optionally, to make sure images fill the space */
+  }
+
+  .enlarged-image-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8); /* Dark background for overlay */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* Ensure it’s above other content */
+  }
+  
+  .enlarged-image-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    object-fit: contain;
+    cursor: pointer;
+  }
+
+  @media (max-width: 767px) {
+    .gallery-container {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  }
+}

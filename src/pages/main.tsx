@@ -6,6 +6,7 @@ import { Introduction } from './introduction';
 import { DateRangePicker } from '../components/date-picker/date-picker';
 import { CardMasonryLayout } from '../components/card-masonry-layout/card-masonry-layout';
 import { CardTreeLayout } from '../components/card-tree-layout/card-tree-layout';
+import {Gallery} from '../components/gallery/gallery';
 import { fetchFamilyTreeData } from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import { defaultFamilyMember } from '../constants/constants';
@@ -33,7 +34,7 @@ export function MainContent() {
     startDate: '',
     endDate: '',
   });
-  const tabContent = ['Card view', 'Table view'];
+  const tabContent = ['Card view', 'Table view', 'Gallery view'];
   const startDateRef = useRef<HTMLInputElement | null>(null);
   const endDateRef = useRef<HTMLInputElement | null>(null);
   const { data, isLoading, error } = useQuery({
@@ -157,6 +158,9 @@ export function MainContent() {
         {isActive === 'tab-1' && (
           <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
         )}
+        {isActive === 'tab-2' &&
+            <Gallery />
+          }
       </div>
     </div>
   );
