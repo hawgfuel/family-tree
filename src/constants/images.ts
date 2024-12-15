@@ -39,9 +39,6 @@ export const imageFileNames = [
         "value":  "glenn-karen-warren-1966.jpg"
     },
     {
-        "value":  "glenn-karen-warren-children.jpg"
-    },
-    {
         "value":  "grade-school-dad-glenn.jpg"
     },
     {
@@ -93,6 +90,9 @@ export const imageFileNames = [
         "value":  "katherine-infant-alan.jpg"
     },
     {
+        "value":  "werstler-garage.jpg"
+    },
+    {
         "value":  "katherine-ralph-infant-alan.jpg"
     },
     {
@@ -103,9 +103,6 @@ export const imageFileNames = [
     },
     {
         "value":  "mary-studio-photo-sepia.jpg"
-    },
-    {
-        "value":  "mom-glenn-karen-warren-me-baby.jpg"
     },
     {
         "value":  "olderman-youngerwoman-boat.jpg"
@@ -207,9 +204,6 @@ export const imageFileNames = [
         "value":  "warren-serving-picnic.jpg"
     },
     {
-        "value":  "werstler-garage.jpg"
-    },
-    {
         "value":  "werstler-picnic.jpg"
     },
     {
@@ -226,6 +220,9 @@ export const imageFileNames = [
     },
     {
         "value":  "woman-flowers-driveway.jpg"
+    },
+    {
+        "value":  "glenn-karen-warren-children.jpg"
     },
     {
         "value":  "young-grammy-baby-dad.jpg"
@@ -250,5 +247,8 @@ export const imageFileNames = [
     },
     {
         "value":  "young-woman-hills-bg.jpg"
+    },
+    {
+        "value":  "mom-glenn-karen-warren-me-baby.jpg"
     }
 ]

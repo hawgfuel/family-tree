@@ -21,17 +21,26 @@ export function Gallery() {
   const handleCloseImage = () => {
     setSelectedImage(null);
   };
-
+  const shuffleArray = (array: any[]) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+    }
+    return array;
+  };
+  const shuffledImageFileNames = shuffleArray([...imageFileNames]);
   return (
+    <><p className='filter-instructions'>Images are randomly shuffled each time the gallery is visited. Click on an image to enlarge it. Click on the enlarged image to close.</p>
     <div className="fade-in gallery-container">
-      {imageFileNames.map(({ value }: ImageFile) => (
+        
+      {shuffledImageFileNames.map(({ value }: ImageFile) => (
         <div
           className="gallery-image image-size-w"
           key={value}
           onClick={() => handleImageClick(value)}
         >
           <img alt={value} src={getImageUrl(value)} />
-        </div>
+        </div>  
       ))}
 
       {selectedImage && (
@@ -47,5 +56,6 @@ export function Gallery() {
         </div>
       )}
     </div>
+    </>
   );
 }
