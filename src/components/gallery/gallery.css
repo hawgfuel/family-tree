@@ -24,10 +24,17 @@
   }
   
   .enlarged-image-overlay img {
-    max-width: 90%;
+    max-width: 70%;
     max-height: 90%;
     object-fit: contain;
     cursor: pointer;
+  }
+  .prev-button,.next-button{
+    width:10em;
+    height:10em;
+    background-color: transparent;
+    cursor:pointer;
+    border:none;
   }
 
   @media (max-width: 767px) {
