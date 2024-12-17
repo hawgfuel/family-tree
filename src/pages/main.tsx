@@ -34,7 +34,7 @@ export function MainContent() {
     startDate: '',
     endDate: '',
   });
-  const tabContent = ['Card view', 'Table view', 'Gallery view'];
+  const tabContent = ['Card view', 'Table view', 'Gallery'];
   const startDateRef = useRef<HTMLInputElement | null>(null);
   const endDateRef = useRef<HTMLInputElement | null>(null);
   const { data, isLoading, error } = useQuery({
