@@ -12,9 +12,10 @@ interface IntroductionProps {
         youngestFamilyMember: FamilyMember;
         familyTimeSpan:number;
     };
+    setIsActive: React.Dispatch<React.SetStateAction<string>>;
   }
   
-  export function Introduction({ introductionData }: IntroductionProps) {
+  export function Introduction({ introductionData, setIsActive }: IntroductionProps) {
     const {
     totalCount,
     mostCommonMaleFirstName,
@@ -24,18 +25,33 @@ interface IntroductionProps {
       youngestFamilyMember,
       familyTimeSpan,
     } = introductionData;
- 
+
+    const handleTabChange = (tab: string) => {
+        setIsActive(`tab-${tab}`);
+    };
     return (
         <div className='introduction'>
             <div className='introduction-header'>
-            {/* <img className='header-image' src="https://www.guicoder.com/werstlerfamily/images/historic-photo-collage-web.jpg" width='50%' height='50%' /> */}
-                <h1>Werstler Family Tree</h1>
-                <p className='introduction-paragraph'>This is a collection of data of ancestors with the Werstler surname. 
-                    I acquired this information from my uncle and my dad. They gained this information from others who researched this before them and contributed to it as they could. 
+                <div className='intro-item image' role="presentation">
+                    <img 
+                    alt='Collage of photographs of Werslter family members over the years'
+                    title='Click on the image to see gallery below'
+                    onClick={() => handleTabChange('2')}
+                    className='header-image' 
+                    src="https://www.guicoder.com/werstlerfamily/images/historic-photo-collage-web.jpg" 
+                    width='100%' height='100%' />
+                </div>
+                <div className='intro-item'>
+                    <h1>Werstler Family Tree</h1>
+                    <p className='introduction-paragraph'>
+                        Below is a collection of data of ancestors with the Werstler surname. 
+                        This is a living document that I plan to grow as I collect more information and find new ways to present it.
                     </p>
-                <p className='introduction-paragraph'>There are some errors in the data as it was entered into the database by hand, 
-                        but I plan to clean up the data where I can.
-                        Currently there are no living relatives in the data below, but I hope to add those relatives with their approval. This is a work in progress. I hope to continue building the site.</p>
+                    <p className='introduction-paragraph'>There are some errors in the data as it was entered into the database by hand, 
+                            but I plan to clean up the data where I can.
+                            Currently there are no living relatives in the data below, but I hope to add those relatives with their approval. 
+                    </p>
+                </div>
             </div>
             <ul className='introduction-data'>
                 <li><span >Total number of family members</span> <span className='accent-color intro-value'>{totalCount}</span></li>

@@ -1,46 +1,100 @@
-.gallery-container {
+  
+  .gallery-container {
     display: grid;
     gap: 10px;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
     grid-template-rows: masonry;
   }
+
   .gallery-container img {
     width: 100%; /* Scale images to 100% of the container width */
     height: auto; /* Maintain aspect ratio */
     object-fit: cover; /* Optionally, to make sure images fill the space */
   }
-
+  /* Base styles for the modal overlay */
   .enlarged-image-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: rgba(0, 0, 0, 0.8); /* Dark background for overlay */
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 9999; /* Ensure it’s above other content */
-  }
-  
-  .enlarged-image-overlay img {
-    max-width: 70%;
-    max-height: 90%;
-    object-fit: contain;
-    cursor: pointer;
-  }
-  .prev-button,.next-button{
-    width:10em;
-    height:10em;
-    background-color: transparent;
-    cursor:pointer;
-    border:none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 1000;
   }
 
-  @media (max-width: 767px) {
-    .gallery-container {
-      display: grid;
-      gap: 8px;
-      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  .image-container {
+    position: relative;
+    padding: 20px; /* Padding around the image and caption */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+  
+  .enlarged-image {
+    max-height: calc(100vh - 100px); /* Constrain image height */
+    max-width: 100%; /* Prevent horizontal overflow */
+    object-fit: contain; /* Maintain aspect ratio */
+  }
+  
+  .caption {
+    background-color: #fff;
+    padding: 10px;
+    font-size: 1rem;
+    text-align: center;
+    word-wrap: break-word;
+    box-sizing: border-box; /* Includes padding in width calculations */
+    width: 100%; /* Ensures it aligns with the image */
+    max-width: var(--image-width); /* Dynamically adjust to image size */
+  }
+
+/* Navigation button styles */
+.prev-button,
+.next-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+.prev-button {
+  left: 20px;
+}
+
+.next-button {
+  right: 20px;
+}
+
+.prev-button svg,
+.next-button svg {
+  width: 40px;
+  height: 40px;
+}
+
+@media (max-width: 767px) {
+
+  .gallery-container {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-template-rows: masonry;
+  }
+/* Style for the image container with padding */
+    .image-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 20px; /* Minimum padding around the image */
+      max-height: calc(100% - 40px); /* Account for 20px padding on top and bottom */
+      max-width:70%;
+      overflow: hidden;
+      box-sizing: border-box;
+    }
+
 }

@@ -4,10 +4,12 @@ import './gallery.css';
 
 interface ImageFile {
   value: string;
+  caption: string;
 }
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [caption, setCaption] = useState<string>('');
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [shuffledImageFileNames, setShuffledImageFileNames] = useState<ImageFile[]>([]);
 
@@ -16,13 +18,15 @@ export function Gallery() {
     return `${path}${photo}`;
   };
 
-  const handleImageClick = (image: string, index: number) => {
+  const handleImageClick = (image: string, caption: string, index: number) => {
     setSelectedIndex(index);
+    setCaption(caption);
     setSelectedImage(image);
   };
 
   const handleCloseImage = () => {
     setSelectedIndex(null);
+    setCaption('');
     setSelectedImage(null);
   };
 
@@ -30,6 +34,7 @@ export function Gallery() {
     if (selectedIndex !== null) {
       const nextIndex = (selectedIndex + 1) % shuffledImageFileNames.length;
       setSelectedImage(shuffledImageFileNames[nextIndex].value);
+      setCaption(shuffledImageFileNames[nextIndex].caption);
       setSelectedIndex(nextIndex);
     }
   };
@@ -39,6 +44,7 @@ export function Gallery() {
       const prevIndex =
         (selectedIndex - 1 + shuffledImageFileNames.length) % shuffledImageFileNames.length;
       setSelectedImage(shuffledImageFileNames[prevIndex].value);
+      setCaption(shuffledImageFileNames[prevIndex].caption);
       setSelectedIndex(prevIndex);
     }
   };
@@ -59,15 +65,16 @@ export function Gallery() {
 
   return (
     <>
+    <a id="gallery" />
       <p className='filter-instructions'>
         Images are randomly shuffled each time the gallery is visited. Click on an image to enlarge it. Click on the enlarged image to close.
       </p>
       <div className="fade-in gallery-container">
-        {shuffledImageFileNames.map(({ value }, index) => (
+        {shuffledImageFileNames.map(({ value, caption }, index) => (
           <div
             className="gallery-image image-size-w"
             key={value}
-            onClick={() => handleImageClick(value, index)}
+            onClick={() => handleImageClick(value, caption, index)}
           >
             <img alt={value} src={getImageUrl(value)} />
           </div>
@@ -80,13 +87,15 @@ export function Gallery() {
                     <circle cx="50" cy="50" r="45" fill="white" stroke-width="2" />
                     <polygon points="55,35 35,50 55,65" fill="black" />
                 </svg>
-            </button>
-            <img
-              src={getImageUrl(selectedImage)} 
-              onClick={handleCloseImage}
-              alt="Enlarged"
-              className="enlarged-image"
-            />
+            </button> 
+            <div className="image-container" onClick={handleCloseImage}>
+              <img
+                src={getImageUrl(selectedImage)}
+                alt="Enlarged"
+                className="enlarged-image"
+              />
+              <div className="caption">{caption}</div>
+            </div>
             <button className="next-button" onClick={handleNextImage} role='next image button'>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid meet" width="100%" height="100%">
                 <circle cx="50" cy="50" r="45" fill="white" stroke-width="2" />

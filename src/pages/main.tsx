@@ -113,7 +113,7 @@ export function MainContent() {
   return (
     <div className="content-wrapper fade-in">
       <div className="content-head">
-        <Introduction introductionData={introductionData} />
+        <Introduction introductionData={introductionData} setIsActive={setIsActive} />
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
@@ -142,12 +142,12 @@ export function MainContent() {
             ))}
           </span>
             <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
-            &mdash;<span>&nbsp;Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
+            <span>&nbsp;Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
         </div>
       </div>
       <div className='card-table'>
         {isActive === 'tab-0' &&
-            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. When filtered by family, click on the father's name to see his siblings and parents.</p> 
+            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. <br />When filtered by family, click on the father's name to see his siblings and parents.</p> 
           }
         {cardLayout=== 'masonry' && isActive === 'tab-0' &&
           <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
