@@ -142,7 +142,7 @@ export function MainContent() {
             ))}
           </span>
             <span className='csv-download-container'><span>Download</span><a className='csv-download' onClick={() => downloadCSV(filteredData)}> CSV</a> of filtered or unfiltered data and save as an excel doc.</span>
-            <span>&nbsp;Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
+            <span className='contact-me'>Contact me via email:<a className='accent-color email-link' href="mailto:alan@guicoder.com"> alan@guicoder.com</a></span>
         </div>
       </div>
       <div className='card-table'>

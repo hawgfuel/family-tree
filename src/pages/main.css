@@ -25,6 +25,8 @@ h1{
     font-weight: 600;
 }
 
+.contact-me {padding-left:8px;}
+
 .clear-all{
     color: #fff;
     background-color:#5a779b;
@@ -161,4 +163,8 @@ select {
 }
 @media (max-width: 856px) {
     .filter-instructions{font-size:.8em;}
+    .csv-download-container{
+        display:block;
+    }
+    .contact-me{display:block;padding-left:12px;}
 }

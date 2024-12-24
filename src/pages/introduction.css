@@ -57,3 +57,9 @@
     }
 }
 
+@media (max-width: 416px) {
+    .introduction-data{
+      display:block;
+      width:100%;
+    }
+  }
