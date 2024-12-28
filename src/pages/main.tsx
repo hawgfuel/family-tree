@@ -28,6 +28,7 @@ export function MainContent() {
   const [filteredData, setFilteredData] = useState<FamilyMember[]>([]);
   const [originalData, setOriginalData] = useState<FamilyMember[]>([]);
   const [isActive, setIsActive] = useState<string>('tab-0');
+  const contentRef = useRef<HTMLDivElement>(null);
   const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
   const [cardLayout, setCardLayout] = useState<'masonry' | 'tree'>('masonry');
   const [dateRange, setDateRange] = useState<{ startDate: string; endDate: string }>({
@@ -113,7 +114,7 @@ export function MainContent() {
   return (
     <div className="content-wrapper fade-in">
       <div className="content-head">
-        <Introduction introductionData={introductionData} setIsActive={setIsActive} />
+        <Introduction introductionData={introductionData} setIsActive={setIsActive} contentRef={contentRef} isActive={isActive} />
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
@@ -125,7 +126,7 @@ export function MainContent() {
             endDateRef={endDateRef}
           />
         </div>
-        <div className="tab-list">
+        <div className="tab-list" id="content" ref={contentRef}>
           <span role="tablist">
             {tabContent.map((tab, index) => (
               <button

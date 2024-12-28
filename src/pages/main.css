@@ -1,3 +1,7 @@
+
+html {
+    scroll-behavior: smooth;
+  }
 body {
     margin: 0;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -41,7 +45,11 @@ h1{
 .no-click{cursor:default;}
 .card-view {padding:10px 20px;}
 
-.card-table {padding-left:20px;padding-right: 20px;background-color: #fff;}
+.card-table {
+    padding-left:20px;
+    padding-right: 20px;
+    background-color: #fff;
+}
 /* Table Styles */
 
 .content-wrapper{

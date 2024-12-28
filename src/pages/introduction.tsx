@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useEffect, useLayoutEffect } from 'react';
 import { FamilyMember } from '../common/types';
 import './introduction.css';
 
@@ -13,9 +13,11 @@ interface IntroductionProps {
         familyTimeSpan:number;
     };
     setIsActive: React.Dispatch<React.SetStateAction<string>>;
+    isActive:string;
+    contentRef: React.RefObject<HTMLDivElement>;
   }
   
-  export function Introduction({ introductionData, setIsActive }: IntroductionProps) {
+  export function Introduction({ introductionData, setIsActive, contentRef, isActive }: IntroductionProps) {
     const {
     totalCount,
     mostCommonMaleFirstName,
@@ -29,17 +31,28 @@ interface IntroductionProps {
     const handleTabChange = (tab: string) => {
         setIsActive(`tab-${tab}`);
     };
+
+    useLayoutEffect(() => {
+        if (isActive === 'tab-2' && contentRef.current) {
+            // Delay scroll until ref is available and state change is fully processed
+            setTimeout(() => {
+                contentRef.current?.scrollIntoView({ behavior: "smooth" });
+            }, 0);
+        }
+    }, [isActive]); // Trigger effect when isActive changes
+
     return (
         <div className='introduction'>
             <div className='introduction-header'>
                 <div className='intro-item image' role="presentation">
+                    <a href="#content" onClick={() => handleTabChange('2')}>
                     <img 
                     alt='Collage of photographs of Werslter family members over the years'
                     title='Click on the image to see gallery below'
-                    onClick={() => handleTabChange('2')}
                     className='header-image' 
                     src="https://www.guicoder.com/werstlerfamily/images/historic-photo-collage-web.jpg" 
                     width='100%' height='100%' />
+                    </a>
                 </div>
                 <div className='intro-item'>
                     <h1>Werstler Family Tree</h1>
