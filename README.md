@@ -1,6 +1,6 @@
 # family-tree
  
-<h2>This is a personal project used to stay fresh on React and front end technologies.</h2>
+<h2>This is a project used to stay fresh on React and front end technologies.</h2>
 <p>Family tree app for the surname Werstler. </p>
 <ul>
 <li>Tech stack: HTML, CSS3, JavaScript, TypeScript.</li>
