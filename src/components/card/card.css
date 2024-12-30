@@ -1,7 +1,7 @@
 .member-card{
     position: relative;
     border: 2px solid var(--border-color); 
-    background-color: var(--grey-button-bg);
+    background-color: var(--background-color);
     border-radius: 8px;
     box-shadow: 2px 2px 5px var(--box-shadow);
     padding: 6px 10px; 
