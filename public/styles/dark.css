@@ -1,0 +1,17 @@
+:root {
+    --background-color: #191919;
+    --header-color: #ECDBBA;
+    --text-color: #ECDBBA;
+    --border-color: #ECDBBA;
+    --light-grey-text: #bbbbbb;
+    --button-text-color: #ECDBBA;
+    --link-color: #C84B31;
+    --active-button-bg: #C84B31;
+    --grey-button-bg: hsl(0, 0%, 28%);
+    --light-blue-background: #2D4263;
+    --light-blue-text: #98baee;
+    --box-shadow: rgba(151, 151, 151, 0.1);
+    --input-background-color: #cecece;
+    --overlay-background: rgba(0, 0, 0, 0.7);
+  }
+  

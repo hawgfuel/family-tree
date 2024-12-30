@@ -1,0 +1,16 @@
+:root {
+    --background-color: #ffffff;
+    --header-color:#AA6600;
+    --text-color: #000000;
+    --border-color:#cecece;
+    --light-grey-text:#333;
+    --button-text-color:#fff;
+    --link-color:#AA6600;
+    --active-button-bg:#AA6600;
+    --grey-button-bg: hsl(0, 0%, 33%);
+    --light-blue-background:#5a779b;
+    --light-blue-text:#5a779b;
+    --input-background-color: #eeeeee;
+    --box-shadow: rgba( 0, 0, 0, 0.2 );
+    --overlay-background: rgba(0, 0, 0, 0.8);
+  }
