@@ -31,12 +31,12 @@ export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   useEffect(() => {
     const link = document.getElementById('theme-link') as HTMLLinkElement;
     if (link) {
-      link.href = `/src/styles/${theme}.css?v=${Date.now()}`; // Add timestamp to force reload
+      link.href = `${document.baseURI}src/styles/${theme}.css?v=${Date.now()}`; // Add timestamp to force reload
     } else {
       const newLink = document.createElement('link');
       newLink.rel = 'stylesheet';
       newLink.id = 'theme-link';
-      newLink.href = `/src/styles/${theme}.css?v=${Date.now()}`;
+      newLink.href = `${document.baseURI}src/styles/${theme}.css?v=${Date.now()}`;
       document.head.appendChild(newLink);
     }
   }, [theme]);

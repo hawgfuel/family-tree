@@ -49,7 +49,6 @@ a:hover {color:var(--light-blue-text)}
     background-color: var(--light-blue-background);
 }
 
-.family-member-name{font-weight: 600;color:var(--link-color)}
 .no-click{cursor:default;}
 .card-view {padding:10px 20px;}
 
