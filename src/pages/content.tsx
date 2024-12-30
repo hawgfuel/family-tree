@@ -20,7 +20,7 @@ import {
 } from '../utilities/utilities';
 import { getImmediateFamily } from '../utilities/generations-transform';
 import {downloadCSV} from '../components/download-csv/download-csv';
-import './main.css';
+import '../styles/main.css';
 
 export function MainContent() {
   const [sortKey, setSortKey] = useState<string | null>(null);

@@ -50,7 +50,7 @@ interface IntroductionProps {
                     alt='Collage of photographs of Werslter family members over the years'
                     title='Click on the image to see gallery below'
                     className='header-image' 
-                    src="https://www.guicoder.com/werstlerfamily/images/historic-photo-collage-web.jpg" 
+                    src="https://www.guicoder.com/werstlerfamily/images/historic-photo-collage2.png" 
                     width='100%' height='100%' />
                     </a>
                 </div>

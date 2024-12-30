@@ -9,6 +9,7 @@ body {
       sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-color:var(--background-color);
   }
   
   code {
@@ -16,45 +17,52 @@ body {
       monospace;
   }
   
-h1{
+h1, h2, h3, h4{
     margin-left: .3rem;
+    color: var(--header-color);
 } 
+
+p, li, span, td {color:var(--text-color)}
+
+input, select, button {
+    border: 1px solid var(--border-color);
+}
+
+input, select{background-color: var(--input-background-color)}
+
+button{border: none;cursor: pointer;padding: 8px;color:var(--button-text-color)}
+
+a {font-weight:bold;color:var(--link-color);text-decoration:none;cursor:pointer;}
+a:hover {color:var(--light-blue-text)}
 
 .csv-download-container {margin-left:12px;}
 
 .csv-download {
-    cursor: pointer;
     font-size:1em;
-    color:#aa6600;
     font-weight: 600;
+    color:var(--link-color);
 }
 
 .contact-me {padding-left:8px;}
 
 .clear-all{
-    color: #fff;
-    background-color:#5a779b;
-    border: none;
-    border-right: solid 1px;
-    padding: 8px;
-    cursor: pointer;
+    background-color: var(--light-blue-background);
 }
 
-.family-member-name{color:#aa6600;font-weight: 600;}
-.click-ancestor {cursor:pointer;}
+.family-member-name{font-weight: 600;color:var(--link-color)}
 .no-click{cursor:default;}
 .card-view {padding:10px 20px;}
 
 .card-table {
     padding-left:20px;
     padding-right: 20px;
-    background-color: #fff;
+    background-color: var(--background-color);
 }
 /* Table Styles */
 
 .content-wrapper{
     margin: 10px 70px 70px; 
-    box-shadow: 0px 35px 50px rgba( 0, 0, 0, 0.2 );
+    box-shadow: 0px 35px 50px var(--box-shadow);
 }
 
 .content-head {
@@ -62,39 +70,32 @@ h1{
 }
 
 .button-pivot, .filters button{
-    color:#fff;
-    background-color: hsl(0, 0%, 33%);
     border:none;
-    border-right: solid 1px;
     padding:8px;
     cursor: pointer;
+    background-color: var(--grey-button-bg);
+    color:var(--button-text-color);
+}
+
+.isActive{
+    background-color:var(--active-button-bg);
+}
+
+.button-pivot:hover{
+    background-color: var(--active-button-bg);
 }
 
 .button-pivot:last-child{
     border-right:0px;
 }
 
-.button-pivot:hover{
-    background-color: #aa6600 ;
-}
-
-.accent-color{
-    color:#aa6600;
-}
-
 .selectYear {
     margin-left:8px;
-}
-
-.isActive {
-    background-color: #aa6600 ;
-    color:#fff;
 }
 
 input, select, button {
     height: 2.0rem;
     padding: 0 1.25rem;
-    border: 1px solid #303030;
     border-radius: 2px;
     margin: 0.5rem .2rem;
     transition: all 250ms;
@@ -108,15 +109,21 @@ select {
 }
 
 .tab-list{
-    border-bottom:1px solid #aaaaaa;
-    border-top:1px solid #aaaaaa;
-    margin:8px 0;    
+    margin:8px 0;   
+    border-bottom:1px solid var(--border-color);
+    border-top:1px solid  var(--border-color); 
 }
 .tab-list, .tab-list span{font-size: .9em;}
 
-.filter-instructions{font-size:1.2em;font-weight:500;color:#5A779B;margin:0px 0px 20px 0;text-align: center;}
+.filter-instructions{
+    font-size:1.2em;
+    font-weight:500;
+    margin:0px 0px 20px 0;
+    text-align: center;
+    color: var(--light-blue-text);
+}
 
-.filter-header{margin:0 0 0 8px;display:inline-block;}
+.filter-header{margin:0;display:inline-block;}
 
 .filter-block {margin-left:8px;display:inline-block}
 .filter-container input{margin-left: 8px;}
@@ -126,14 +133,13 @@ select {
     padding:0;
     margin:0;
     border:0;
+    border:none;
     background-color: transparent;
 }
 
 .caption{display:block;float:right;font-size:.7em;margin-top:0;}
 .margin-top-lg {margin-top:40px;}
 .padding-bottom-lg {padding-bottom:40px;}
-.email-link {text-decoration: none;}
-.email-link:hover {color:#0084f0;font-weight:bold;cursor:pointer;}
 
 .fade-in {
     animation: fadeIn 0.5s ease-in-out;

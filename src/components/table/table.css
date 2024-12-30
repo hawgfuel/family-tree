@@ -7,11 +7,10 @@
     border-collapse: collapse;
     width: 100%;
     max-width: 100%;
-    background-color: white;
 }
 
 .fl-table tr {
-    border-bottom:solid #bdbdbd 1px;
+    border-bottom:solid 1px var(--border-color);
 }
 
 .fl-table td, .fl-table th {
@@ -20,16 +19,16 @@
 }
 
 .fl-table td {
-    border-right: 1px solid #f8f8f8;
     font-size: 12px;
     word-wrap: break-word;
 }
 
 .fl-table thead th {
-    color: #ffffff;
-    background: #5a779b ;
+    color:var(--button-text-color);
+    background: var(--light-blue-background);
     cursor: pointer;
 }
+
 .showHorizontalLabel {
     display:none;
 }
@@ -39,7 +38,6 @@
         display: block;
         width: inherit;
         white-space: nowrap;
-        background-color: white;
         overflow: scroll;
     }
 .showHorizontalLabel {
@@ -56,16 +54,4 @@
         height: 300px;
        
     }
-    .table-wrapper:before{
-        display: block;
-        text-align: right;
-        font-size: 11px;
-        color: white;
-        padding: 0 0 10px;
-    }
-    
-    .table-wrapper h1 {
-        font-size: 3.0em ;
-    }
-
 }

@@ -1,6 +1,6 @@
 .date-range-DateRangePicker {
     font-family: Arial, sans-serif;
-    color: #333;
+    color: var(--text-color);
     width:926px;
     margin-left:12px;
     font-size:.8em;
@@ -17,7 +17,6 @@
     justify-content: space-between;
     width: 100%;
     border-radius: 4px;
-    background-color: #f9f9f9;
     box-sizing: border-box;
   }
   
@@ -25,8 +24,8 @@
     display: inline-flex;
     align-items: center;
     font-size: 0.9rem;
-    color: #aa6600;
-    border: 1px solid #ccc;
+    color: var(--link-color);
+    border: 1px solid var(--border-color);
     padding: 0px 0px 0px 4px;
     width:130px;
     cursor: pointer;
@@ -37,32 +36,21 @@
   }
   
   .set-range-Button {
-    color: #fff;
-    background-color:#aa6600;
+    background-color:var(--active-button-bg);
     border: none;
-    border-right: solid 1px;
     padding: 8px;
     cursor: pointer;
   }
 
   .clear-range-Button{
-    color: #fff;
-    background-color:hsl(0, 0%, 33%);
-    border: none;
-    border-right: solid 1px;
-    padding: 8px;
-    cursor: pointer;
-  }
-  
-  .date-range-Button:hover {
-    color: #005bb5;
+    color: var(--button-text-color);
+    background-color:var(--grey-button-bg);
   }
   
   .date-range-Popover {
     position: absolute;
     z-index: 10;
-    border: 1px solid #ccc;
-    background-color: white;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     padding: 8px;
@@ -75,7 +63,6 @@
     gap: 8px;
   }
   
-  
   .date-range-CalendarCell {
     display: flex;
     justify-content: center;
@@ -86,12 +73,8 @@
   }
   
   .date-range-CalendarCell[data-selected] {
-    background-color: #616161;
+    background-color: var(--grey-button-bg);
     color: white;
-  }
-  
-  .date-range-CalendarCell:hover {
-    background-color: #e3f2fd;
   }
   
   .date-range-Heading {
