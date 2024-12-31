@@ -108,3 +108,5 @@ export function Gallery() {
     </>
   );
 }
+
+export default Gallery;

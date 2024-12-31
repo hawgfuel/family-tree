@@ -2,14 +2,14 @@ import React from 'react';
 import './calendar.css';
 
 interface DateRangePickerProps {
-  updateDateRange: (startDate: string, endDate: string) => void;  // Function to update the date range based on the input values
-  clearDateRange: () => void;   // Function to clear the date range and input fields
+  updateDateRange: (startDate: string, endDate: string) => void;
+  clearDateRange: () => void;
   dateRange: { startDate: string; endDate: string };  // Current date range state
   startDateRef: React.RefObject<HTMLInputElement>;  // Ref for start date input
   endDateRef: React.RefObject<HTMLInputElement>;    // Ref for end date input
 }
 
-export function DateRangePicker({ 
+export const DateRangePicker = React.memo(function DateRangePicker({
   updateDateRange,
   clearDateRange,
   dateRange,
@@ -61,4 +61,4 @@ export function DateRangePicker({
       </form>
     </span>
   );
-}
+});

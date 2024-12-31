@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect } from 'react';
+import React, {useLayoutEffect } from 'react';
 import { FamilyMember } from '../common/types';
 import './introduction.css';
 
@@ -34,12 +34,11 @@ interface IntroductionProps {
 
     useLayoutEffect(() => {
         if (isActive === 'tab-2' && contentRef.current) {
-            // Delay scroll until ref is available and state change is fully processed
             setTimeout(() => {
                 contentRef.current?.scrollIntoView({ behavior: "smooth" });
             }, 0);
         }
-    }, [isActive]); // Trigger effect when isActive changes
+    }, [isActive]);
 
     return (
         <div className='introduction'>

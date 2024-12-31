@@ -42,3 +42,4 @@ export function CardTreeLayout({ filteredData, setSelectedFamilyMember }: CardPr
     </div>
   );
 }
+export default CardTreeLayout;
