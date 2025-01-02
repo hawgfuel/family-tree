@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo, useRef, Suspense  } from 'react';
-import { useQuery } from '@tanstack/react-query';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 import { formatFamilyMemberData } from '../utilities/formatData';
 import { Introduction } from './introduction';
 import { DateRangePicker } from '../components/date-picker/date-picker';
@@ -7,7 +8,6 @@ import { CardMasonryLayout } from '../components/card-masonry-layout/card-masonr
 const CardTreeLayout = React.lazy(() => import('../components/card-tree-layout/card-tree-layout'));
 const FamilyTreeTable = React.lazy(() => import('../components/table/table'));
 const Gallery = React.lazy(() => import('../components/gallery/gallery'));
-import { fetchFamilyTreeData } from '../client/fetchFamilyTreeData';
 import { FamilyMember } from '../common/types';
 import { defaultFamilyMember } from '../constants/constants';
 import Search from '../components/search/search';
@@ -23,10 +23,10 @@ import {downloadCSV} from '../components/download-csv/download-csv';
 import '../styles/main.css';
 
 export function MainContent() {
+  const originalData = useSelector((state: RootState) => state.familyTree.originalData);
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [filteredData, setFilteredData] = useState<FamilyMember[]>([]);
-  const [originalData, setOriginalData] = useState<FamilyMember[]>([]);
   const [isActive, setIsActive] = useState<string>('tab-0');
   const contentRef = useRef<HTMLDivElement>(null);
   const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
@@ -38,18 +38,8 @@ export function MainContent() {
   const tabContent = ['Card view', 'Table view', 'Gallery'];
   const startDateRef = useRef<HTMLInputElement | null>(null);
   const endDateRef = useRef<HTMLInputElement | null>(null);
-  const { data, isLoading, error } = useQuery({
-    queryKey: ['familyTree'],
-    queryFn: fetchFamilyTreeData,
-  });
 
-  useEffect(() => {
-    if (data) {
-      setOriginalData(data);
-      setFilteredData(data);
-    }
-  }, [data]);
-
+// move to child masonry and tree components
   useEffect(() => {
     if (selectedFamilyMember) {
       const newFilteredData = getImmediateFamily(selectedFamilyMember.id, originalData);
@@ -63,7 +53,9 @@ export function MainContent() {
       setFilteredData(updatedData);
     }
   }, [originalData, dateRange]);
+// end move
 
+// move to introduction component
   const introductionData = useMemo(() => {
     return {
       totalCount: filteredData.length,
@@ -76,7 +68,9 @@ export function MainContent() {
       filteredData: filteredData,
     };
   }, [originalData, filteredData]);
+// end move
 
+// move to table component, or to seperate file
   const handleSort = (key: keyof FamilyMember) => {
     const order = sortKey === key ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
     const sortedData = [...filteredData].sort((a, b) => {
@@ -88,6 +82,7 @@ export function MainContent() {
     setSortOrder(order);
     setFilteredData(sortedData);
   };
+// end move
 
   const handleSearch = (searchTerm: string) => {
     const filtered = originalData.filter((familyMember) =>
@@ -96,6 +91,7 @@ export function MainContent() {
     setFilteredData(filtered);
   };
 
+  // move to date component
   const clearDateRange = () => {
     if (startDateRef.current) startDateRef.current.value = '';
     if (endDateRef.current) endDateRef.current.value = '';
@@ -107,9 +103,7 @@ export function MainContent() {
     const endDate = endDateRef.current?.value || '';
     setDateRange({ startDate, endDate });
   };
-
-  if (isLoading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+// end move
 
   return (
     <div className="content-wrapper fade-in">

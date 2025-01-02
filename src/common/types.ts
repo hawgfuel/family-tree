@@ -17,3 +17,9 @@ export interface FamilyMember {
     Children?: [{child: string; id:string}];
     id:string;
   }
+
+export interface FamilyTreeState {
+    originalData: FamilyMember[];  // Array of FamilyMember
+    filteredData: FamilyMember[];  // Array of FamilyMember
+    dateRange: { startDate: string; endDate: string };  // Start and end dates
+  }
