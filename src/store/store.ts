@@ -1,3 +1,5 @@
+
+// store.ts
 import { configureStore } from '@reduxjs/toolkit';
 import familyTreeReducer from './reducer';
 

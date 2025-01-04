@@ -1,14 +1,19 @@
 
 import { FamilyMember } from '../../common/types';
+import { useSelector, useDispatch } from 'react-redux';
+import { RootState } from '../../store/store';
+import { setFilteredData } from '../../store/actions';
+import { getImmediateFamily } from '../../utilities/generations-transform';
 
 interface CardProps {
     siblingRow: boolean;
     pipe: string;
     data: FamilyMember[];
-    setSelectedFamilyMember: (selected: FamilyMember) => void;
 }
 
-export function Card({data, pipe, setSelectedFamilyMember}: CardProps){
+export function Card({data, pipe}: CardProps){
+  const dispatch = useDispatch();
+  const originalData = useSelector((state: RootState) => state.familyTree.originalData);
 
     const handleMouseEnter = (id: string) => {
         const relative = document.getElementById(id);
@@ -25,7 +30,8 @@ export function Card({data, pipe, setSelectedFamilyMember}: CardProps){
       };
 
   const handleSelectFamilyMember = (member: FamilyMember) => {
-    setSelectedFamilyMember(member);
+     const newFilteredData = getImmediateFamily(member.id, originalData);
+        dispatch(setFilteredData(newFilteredData));
   };
 
 return (

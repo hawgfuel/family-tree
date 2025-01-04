@@ -1,36 +1,29 @@
-import { FamilyMember, FamilyTreeState } from '../common/types';
+// reducer.ts
+import { createReducer } from '@reduxjs/toolkit';
+import { FamilyTreeState, FamilyTreeAction, SetOriginalDataAction, SetFilteredDataAction, SetSelectedFamilyMemberAction, SetDateRangeAction } from '../common/types';
 
-const initialState = {
-    originalData: [],
-    filteredData: [],
-    dateRange: { startDate: '', endDate: '' },
-  };
-  
-  const familyTreeReducer = (
-    state: FamilyTreeState = initialState,
-    action: { type: string; data?: FamilyMember[]; range?: { startDate: string; endDate: string } }
-  ): FamilyTreeState => {
-    switch (action.type) {
-      case 'SET_ORIGINAL_DATA':
-        return {
-          ...state,
-          originalData: action.data || [],
-          filteredData: action.data || [],
-        };
-      case 'SET_FILTERED_DATA':
-        return {
-          ...state,
-          filteredData: action.data || [],
-        };
-      case 'SET_DATE_RANGE':
-        return {
-          ...state,
-          dateRange: action.range || { startDate: '', endDate: '' },
-        };
-      default:
-        return state;
-    }
-  };
-  
-  export default familyTreeReducer;
-  
+const initialState: FamilyTreeState = {
+  selectedFamilyMember: null,
+  originalData: [],
+  filteredData: [],
+  dateRange: { startDate: '', endDate: '' },
+};
+
+const familyTreeReducer = createReducer(initialState, (builder) => {
+  builder
+    .addCase('SET_ORIGINAL_DATA', (state, action: SetOriginalDataAction) => {
+      state.originalData = action.data || [];
+      state.filteredData = action.data || [];
+    })
+    .addCase('SET_FILTERED_DATA', (state, action: SetFilteredDataAction) => {
+      state.filteredData = action.data || [];
+    })
+    .addCase('SET_SELECTED_FAMILY_MEMBER', (state, action: SetSelectedFamilyMemberAction) => {
+      state.selectedFamilyMember = action.payload || null;
+    })
+    .addCase('SET_DATE_RANGE', (state, action: SetDateRangeAction) => {
+      state.dateRange = action.range || { startDate: '', endDate: '' };
+    });
+});
+
+export default familyTreeReducer;

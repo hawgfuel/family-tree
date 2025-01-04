@@ -1,33 +1,38 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { FamilyMember } from '../../common/types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
+import { setFilteredData } from '../../store/actions';
+import { getImmediateFamily } from '../../utilities/generations-transform';
 import '../card/card.css';
 import './card-masonry-layout.css';
 
 interface CardProps {
-  setSelectedFamilyMember: (selected: FamilyMember) => void;
   setCardLayout: (layout: 'masonry' | 'tree') => void;
 }
 
-export function CardMasonryLayout({ setSelectedFamilyMember, setCardLayout }: CardProps) {
+export function CardMasonryLayout({  setCardLayout }: CardProps) {
+const dispatch = useDispatch();
+const originalData = useSelector((state: RootState) => state.familyTree.originalData);
 const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
+
   const handleMouseEnter = (id: string) => {
     const relative = document.getElementById(id);
     if (relative) {
-      relative.classList.add('highlight'); // Add highlight class
+      relative.classList.add('highlight');
     }
   };
 
   const handleMouseLeave = (id: string) => {
     const relative = document.getElementById(id);
     if (relative) {
-      relative.classList.remove('highlight'); // Remove highlight class
+      relative.classList.remove('highlight');
     }
   };
 
   const handleSelectFamilyMember = (member: FamilyMember) => {
-    setSelectedFamilyMember(member);
+    const newFilteredData = getImmediateFamily(member.id, originalData);
+    dispatch(setFilteredData(newFilteredData));
     setCardLayout('tree')
   };
 

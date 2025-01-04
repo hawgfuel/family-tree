@@ -1,3 +1,4 @@
+// types.ts
 export interface FamilyMember {
     FirstName: string;
     LastName: string;
@@ -19,7 +20,39 @@ export interface FamilyMember {
   }
 
 export interface FamilyTreeState {
+  selectedFamilyMember: FamilyMember | null;
     originalData: FamilyMember[];  // Array of FamilyMember
     filteredData: FamilyMember[];  // Array of FamilyMember
     dateRange: { startDate: string; endDate: string };  // Start and end dates
   }
+
+  
+// types.ts
+
+// Action Interfaces (Optional: for clarity, but not required if you prefer inline types in the reducer)
+export interface SetOriginalDataAction {
+  type: 'SET_ORIGINAL_DATA';
+  data?: FamilyMember[];
+}
+
+export interface SetFilteredDataAction {
+  type: 'SET_FILTERED_DATA';
+  data?: FamilyMember[];
+}
+
+export interface SetSelectedFamilyMemberAction {
+  type: 'SET_SELECTED_FAMILY_MEMBER';
+  payload: FamilyMember | null;
+}
+
+export interface SetDateRangeAction {
+  type: 'SET_DATE_RANGE';
+  range?: { startDate: string; endDate: string };
+}
+
+// Combine all action types for use in the reducer
+export type FamilyTreeAction =
+  | SetOriginalDataAction
+  | SetFilteredDataAction
+  | SetSelectedFamilyMemberAction
+  | SetDateRangeAction;

@@ -11,7 +11,6 @@ const FamilyTreeTable = React.lazy(() => import('../components/table/table'));
 const Gallery = React.lazy(() => import('../components/gallery/gallery'));
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
-import { getImmediateFamily } from '../utilities/generations-transform';
 import {downloadCSV} from '../components/download-csv/download-csv';
 import '../styles/main.css';
 
@@ -25,7 +24,7 @@ export function MainContent() {
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isActive, setIsActive] = useState<string>('tab-0');
   const contentRef = useRef<HTMLDivElement>(null);
-  const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
+  
   const [cardLayout, setCardLayout] = useState<'masonry' | 'tree'>('masonry');
   const [dateRange, setDateRange] = useState<{ startDate: string; endDate: string }>({
     startDate: '',
@@ -34,14 +33,6 @@ export function MainContent() {
   const tabContent = ['Card view', 'Table view', 'Gallery'];
   const startDateRef = useRef<HTMLInputElement | null>(null);
   const endDateRef = useRef<HTMLInputElement | null>(null);
-
-// move to child masonry and tree components
-  useEffect(() => {
-    if (selectedFamilyMember) {
-      const newFilteredData = getImmediateFamily(selectedFamilyMember.id, originalData);
-      dispatch(setFilteredData(newFilteredData));
-    }
-  }, [selectedFamilyMember]);
 
   useEffect(() => {
     if(originalData.length > 0){
@@ -126,11 +117,11 @@ export function MainContent() {
             <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. <br />When filtered by family, click on the father's name to see his siblings and parents.</p> 
           }
         {cardLayout=== 'masonry' && isActive === 'tab-0' &&
-          <CardMasonryLayout setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
+          <CardMasonryLayout setCardLayout={setCardLayout} />
         }
         { cardLayout === "tree" && isActive === 'tab-0' &&
         <Suspense fallback={<div>Loading...</div>}>
-          <CardTreeLayout setSelectedFamilyMember={setSelectedFamilyMember} />
+          <CardTreeLayout />
         </Suspense>
         }
         {isActive === 'tab-1' && (

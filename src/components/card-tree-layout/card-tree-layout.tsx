@@ -1,35 +1,21 @@
-import React,  { useEffect } from 'react';
+import React,  { useEffect, useState } from 'react';
 import { FamilyMember } from '../../common/types';
-import {Card} from '../card/card';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/store';
+import {Card} from '../card/card';
 import '../card/card.css';
 import './card-tree-layout.css';
 
-interface CardProps {
-  setSelectedFamilyMember: (selected: FamilyMember) => void;
-}
-
-export function CardTreeLayout({ setSelectedFamilyMember }: CardProps) {
+export function CardTreeLayout() {
   const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
   const familyArr = [...filteredData];
   const parentArr = familyArr.slice(0, 2); 
   familyArr.splice(0, 2);
 
-  useEffect(() => { 
-    if (familyArr) {
-        const siblingBorder = document.getElementById('siblingBorder') as HTMLElement | null;
-        const newWidth = familyArr.length * 200;
-        if (siblingBorder) {
-            siblingBorder.style.width = `${newWidth}px`;
-        }
-    }
-}, [familyArr]);
-
   return (
     <div className='fade-in'>
         <div className='card-tree-container card-tree-row'>
-            <Card data={parentArr} pipe={'card-pipe-bottom'} siblingRow={false} setSelectedFamilyMember={setSelectedFamilyMember} />
+            <Card data={parentArr} pipe={'card-pipe-bottom'} siblingRow={false} />
         </div>
         {familyArr && (
             <div className='sibling-border-container'>
@@ -38,7 +24,7 @@ export function CardTreeLayout({ setSelectedFamilyMember }: CardProps) {
         )
         }
         <div className='siblings card-tree-row bottom padding-bottom-lg'>
-            <Card data={familyArr}  pipe={'card-pipe-top'} siblingRow={true} setSelectedFamilyMember={setSelectedFamilyMember} />
+            <Card data={familyArr}  pipe={'card-pipe-top'} siblingRow={true} />
         </div>
     </div>
   );
