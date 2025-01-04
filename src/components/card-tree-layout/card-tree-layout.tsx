@@ -1,16 +1,17 @@
 import React,  { useEffect } from 'react';
 import { FamilyMember } from '../../common/types';
 import {Card} from '../card/card';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import '../card/card.css';
 import './card-tree-layout.css';
 
 interface CardProps {
-  filteredData: FamilyMember[];
   setSelectedFamilyMember: (selected: FamilyMember) => void;
 }
 
-export function CardTreeLayout({ filteredData, setSelectedFamilyMember }: CardProps) {
-
+export function CardTreeLayout({ setSelectedFamilyMember }: CardProps) {
+  const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
   const familyArr = [...filteredData];
   const parentArr = familyArr.slice(0, 2); 
   familyArr.splice(0, 2);

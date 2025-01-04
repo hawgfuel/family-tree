@@ -1,14 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { FamilyMember } from '../../common/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import  './table.css';
 
 interface TableProps {
-  filteredData: FamilyMember[];
   handleSort: (key: keyof FamilyMember) => void;
 }
 
-function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
+function FamilyTreeTable({ handleSort }: TableProps) {
+
+  const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
+
   const getFormattedParentName = (parent: any) => {
     if (parent && typeof parent === 'object') {
       return `${parent.FirstName || ''} ${parent.LastName || ''}`.trim() || '';
@@ -36,7 +40,7 @@ function FamilyTreeTable({ filteredData, handleSort }: TableProps) {
         </tr>
       </thead>
       <tbody>
-        {filteredData.map((member, index) => (
+        {filteredData.map((member: FamilyMember, index: number) => (
           <tr key={index}>
             <td>{member.FirstName}</td>
             <td>{member.LastName}</td>

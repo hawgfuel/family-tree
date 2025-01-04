@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useMemo, useRef, Suspense  } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect, useRef, Suspense  } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
+import { setFilteredData } from '../store/actions';
 import { formatFamilyMemberData } from '../utilities/formatData';
 import { Introduction } from './introduction';
 import { DateRangePicker } from '../components/date-picker/date-picker';
@@ -9,24 +10,18 @@ const CardTreeLayout = React.lazy(() => import('../components/card-tree-layout/c
 const FamilyTreeTable = React.lazy(() => import('../components/table/table'));
 const Gallery = React.lazy(() => import('../components/gallery/gallery'));
 import { FamilyMember } from '../common/types';
-import { defaultFamilyMember } from '../constants/constants';
 import Search from '../components/search/search';
-import {
-  getFamilyTimeSpan,
-  getMostCommonSurname,
-  getMostCommonFirstNameByGender,
-  getOldestFamilyMember,
-  getYoungestFamilyMember,
-} from '../utilities/utilities';
 import { getImmediateFamily } from '../utilities/generations-transform';
 import {downloadCSV} from '../components/download-csv/download-csv';
 import '../styles/main.css';
 
+
 export function MainContent() {
+  const dispatch = useDispatch();
   const originalData = useSelector((state: RootState) => state.familyTree.originalData);
+  const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-  const [filteredData, setFilteredData] = useState<FamilyMember[]>([]);
   const [isActive, setIsActive] = useState<string>('tab-0');
   const contentRef = useRef<HTMLDivElement>(null);
   const [selectedFamilyMember, setSelectedFamilyMember] = useState<FamilyMember | null>(null);
@@ -43,31 +38,16 @@ export function MainContent() {
   useEffect(() => {
     if (selectedFamilyMember) {
       const newFilteredData = getImmediateFamily(selectedFamilyMember.id, originalData);
-      setFilteredData(newFilteredData);
+      dispatch(setFilteredData(newFilteredData));
     }
   }, [selectedFamilyMember]);
 
   useEffect(() => {
     if(originalData.length > 0){
       const updatedData = formatFamilyMemberData(originalData, dateRange);
-      setFilteredData(updatedData);
+      dispatch(setFilteredData(updatedData));
     }
   }, [originalData, dateRange]);
-// end move
-
-// move to introduction component
-  const introductionData = useMemo(() => {
-    return {
-      totalCount: filteredData.length,
-      mostCommonMaleFirstName: getMostCommonFirstNameByGender(filteredData, 'male') || 'unknown',
-      mostCommonFemaleFirstName: getMostCommonFirstNameByGender(filteredData, 'female') || 'unknown',
-      mostCommonSurname: getMostCommonSurname(filteredData) || '',
-      oldestFamilyMember: getOldestFamilyMember(filteredData) || defaultFamilyMember,
-      youngestFamilyMember: getYoungestFamilyMember(filteredData) || defaultFamilyMember,
-      familyTimeSpan: getFamilyTimeSpan(filteredData) || 0,
-      filteredData: filteredData,
-    };
-  }, [originalData, filteredData]);
 // end move
 
 // move to table component, or to seperate file
@@ -80,7 +60,7 @@ export function MainContent() {
     });
     setSortKey(key);
     setSortOrder(order);
-    setFilteredData(sortedData);
+    dispatch(setFilteredData(sortedData));
   };
 // end move
 
@@ -108,7 +88,7 @@ export function MainContent() {
   return (
     <div className="content-wrapper fade-in">
       <div className="content-head">
-        <Introduction introductionData={introductionData} setIsActive={setIsActive} contentRef={contentRef} isActive={isActive} />
+        <Introduction setIsActive={setIsActive} contentRef={contentRef} isActive={isActive} />
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
@@ -145,16 +125,16 @@ export function MainContent() {
             <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. <br />When filtered by family, click on the father's name to see his siblings and parents.</p> 
           }
         {cardLayout=== 'masonry' && isActive === 'tab-0' &&
-          <CardMasonryLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
+          <CardMasonryLayout setSelectedFamilyMember={setSelectedFamilyMember} setCardLayout={setCardLayout} />
         }
         { cardLayout === "tree" && isActive === 'tab-0' &&
         <Suspense fallback={<div>Loading...</div>}>
-          <CardTreeLayout filteredData={filteredData} setSelectedFamilyMember={setSelectedFamilyMember} />
+          <CardTreeLayout setSelectedFamilyMember={setSelectedFamilyMember} />
         </Suspense>
         }
         {isActive === 'tab-1' && (
           <Suspense fallback={<div>Loading...</div>}>
-            <FamilyTreeTable handleSort={handleSort} filteredData={filteredData} />
+            <FamilyTreeTable handleSort={handleSort} />
           </Suspense>
         )}
         {isActive === 'tab-2' &&

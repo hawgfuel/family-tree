@@ -1,16 +1,17 @@
 import React from 'react';
 import { FamilyMember } from '../../common/types';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/store';
 import '../card/card.css';
 import './card-masonry-layout.css';
 
 interface CardProps {
-  filteredData: FamilyMember[];
   setSelectedFamilyMember: (selected: FamilyMember) => void;
   setCardLayout: (layout: 'masonry' | 'tree') => void;
 }
 
-export function CardMasonryLayout({ filteredData, setSelectedFamilyMember, setCardLayout }: CardProps) {
-
+export function CardMasonryLayout({ setSelectedFamilyMember, setCardLayout }: CardProps) {
+const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
   const handleMouseEnter = (id: string) => {
     const relative = document.getElementById(id);
     if (relative) {
