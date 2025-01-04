@@ -1,9 +1,9 @@
 # family-tree
  
-<h2>This is a project used to stay fresh on React and front end technologies.</h2>
+<h2>This is a project I use both to stay fresh on React and front end technologies, and display family tree data with my family members.</h2>
 <p>Family tree app for the surname Werstler. See it live at: <a href="https://www.guicoder.com/werstlerfamily">Family tree app</a></p>
 <ul>
-    <li>Tech stack: HTML, CSS3, JavaScript, TypeScript.</li>
+    <li>Tech stack: HTML, CSS3, JavaScript, TypeScript, Redux.</li>
     <li>MySQL database, CMS for family member data entry.</li>
     <li>Restful API for consumption of React UI.</li>
     <li>ThemeProvider for light and dark mode themes.</li>
