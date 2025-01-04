@@ -6,9 +6,9 @@ import { formatFamilyMemberData } from '../utilities/formatData';
 import { Introduction } from './introduction';
 import { DateRangePicker } from '../components/date-picker/date-picker';
 import { CardMasonryLayout } from '../components/card-masonry-layout/card-masonry-layout';
-const CardTreeLayout = React.lazy(() => import('../components/card-tree-layout/card-tree-layout'));
-const FamilyTreeTable = React.lazy(() => import('../components/table/table'));
-const Gallery = React.lazy(() => import('../components/gallery/gallery'));
+import {CardTreeLayout} from '../components/card-tree-layout/card-tree-layout';
+import FamilyTreeTable from '../components/table/table';
+import {Gallery} from '../components/gallery/gallery';
 import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
 import {downloadCSV} from '../components/download-csv/download-csv';
@@ -125,14 +125,10 @@ export function MainContent() {
         </Suspense>
         }
         {isActive === 'tab-1' && (
-          <Suspense fallback={<div>Loading...</div>}>
             <FamilyTreeTable handleSort={handleSort} />
-          </Suspense>
         )}
         {isActive === 'tab-2' &&
-        <Suspense fallback={<div>Loading...</div>}>
           <Gallery />
-        </Suspense>
         }
       </div>
     </div>
