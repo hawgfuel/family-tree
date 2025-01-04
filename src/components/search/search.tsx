@@ -2,22 +2,22 @@ import React, { useState } from 'react';
 import { FamilyMember } from '../../common/types';
 
 interface SearchProps {
-  setFilteredData: (key: string) => void;
+  setSearchData: (key: string) => void;
   setCardLayout: (layout: 'masonry' | 'tree') => void;
 }
 
-const Search = ( {setFilteredData, setCardLayout }: SearchProps) => {
+const Search = ( {setSearchData, setCardLayout }: SearchProps) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     const value = event.target.value;
     setSearchTerm(value);
-    setFilteredData(value); // Passes the search term to the parent to filter data
+    setSearchData(value);
   };
 
   const handleClear = () => {
     setSearchTerm('');
-    setFilteredData('');
+    setSearchData('');
     setCardLayout('masonry');
   };
 

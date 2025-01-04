@@ -20,6 +20,7 @@ export function MainContent() {
   const dispatch = useDispatch();
   const originalData = useSelector((state: RootState) => state.familyTree.originalData);
   const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
+  const [searchData, setSearchData] = useState<string | null>(null);
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isActive, setIsActive] = useState<string>('tab-0');
@@ -50,7 +51,7 @@ export function MainContent() {
   }, [originalData, dateRange]);
 // end move
 
-// move to table component, or to seperate file
+// table component sort
   const handleSort = (key: keyof FamilyMember) => {
     const order = sortKey === key ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
     const sortedData = [...filteredData].sort((a, b) => {
@@ -62,13 +63,13 @@ export function MainContent() {
     setSortOrder(order);
     dispatch(setFilteredData(sortedData));
   };
-// end move
 
+// seach component data filter
   const handleSearch = (searchTerm: string) => {
     const filtered = originalData.filter((familyMember) =>
       familyMember.FirstName.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredData(filtered);
+    dispatch(setFilteredData(filtered));
   };
 
   // move to date component
@@ -91,7 +92,7 @@ export function MainContent() {
         <Introduction setIsActive={setIsActive} contentRef={contentRef} isActive={isActive} />
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
-          <Search setFilteredData={handleSearch} setCardLayout={setCardLayout} />
+          <Search setSearchData={handleSearch} setCardLayout={setCardLayout} />
           <DateRangePicker
             updateDateRange={updateDateRange}
             clearDateRange={clearDateRange}
