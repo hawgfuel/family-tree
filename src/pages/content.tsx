@@ -19,7 +19,6 @@ export function MainContent() {
   const dispatch = useDispatch();
   const originalData = useSelector((state: RootState) => state.familyTree.originalData);
   const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
-  const [searchData, setSearchData] = useState<string | null>(null);
   const [sortKey, setSortKey] = useState<string | null>(null);
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isActive, setIsActive] = useState<string>('tab-0');
@@ -81,6 +80,7 @@ export function MainContent() {
     <div className="content-wrapper fade-in">
       <div className="content-head">
         <Introduction setIsActive={setIsActive} contentRef={contentRef} isActive={isActive} />
+        {isActive !== 'tab-2' &&
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setSearchData={handleSearch} setCardLayout={setCardLayout} />
@@ -92,6 +92,7 @@ export function MainContent() {
             endDateRef={endDateRef}
           />
         </div>
+}
         <div className="tab-list" id="content" ref={contentRef}>
           <span role="tablist">
             {tabContent.map((tab, index) => (

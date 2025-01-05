@@ -20,15 +20,13 @@ export interface FamilyMember {
   }
 
 export interface FamilyTreeState {
-  selectedFamilyMember: FamilyMember | null;
-    originalData: FamilyMember[];  // Array of FamilyMember
-    filteredData: FamilyMember[];  // Array of FamilyMember
-    dateRange: { startDate: string; endDate: string };  // Start and end dates
+    originalData: FamilyMember[];
+    filteredData: FamilyMember[];
+    selectedFamilyMember: FamilyMember | null;
+    dateRange: { startDate: string; endDate: string };
   }
 
-  
-// types.ts
-
+// Duplicate interfaces in actions.ts
 // Action Interfaces (Optional: for clarity, but not required if you prefer inline types in the reducer)
 export interface SetOriginalDataAction {
   type: 'SET_ORIGINAL_DATA';

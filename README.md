@@ -14,7 +14,7 @@
         <li>Download a CSV of filtered or unfiltered data.</li>
     </li>
     <li>Card view: see family member cards in masonry layout
-        <li>Click on the family member name to see their immediate family including Father, Mother and siblings.</li>
+        <li>Filter by clicking on the family member name to see their immediate family including Father, Mother and siblings.</li>
     </li>
     <li>Table view: see a responsive table of complete family member data.</li>
     <li>Gallery: see thumbnails of photos in a masonry layout.

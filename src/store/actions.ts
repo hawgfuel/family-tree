@@ -28,24 +28,3 @@ export const setDateRange = (range: { startDate: string; endDate: string }) => (
   range,
 });
 
-// Action Interfaces
-interface SetOriginalDataAction {
-  type: typeof SET_ORIGINAL_DATA;
-  data?: FamilyMember[];
-}
-
-interface SetFilteredDataAction {
-  type: typeof SET_FILTERED_DATA;
-  data?: FamilyMember[];
-}
-
-interface SetSelectedFamilyMemberAction {
-  type: typeof SET_SELECTED_FAMILY_MEMBER;
-  payload: FamilyMember | null;
-}
-
-interface SetDateRangeAction {
-  type: typeof SET_DATE_RANGE;
-  range?: { startDate: string; endDate: string };
-}
-

@@ -1,6 +1,6 @@
 // reducer.ts
 import { createReducer } from '@reduxjs/toolkit';
-import { FamilyTreeState, FamilyTreeAction, SetOriginalDataAction, SetFilteredDataAction, SetSelectedFamilyMemberAction, SetDateRangeAction } from '../common/types';
+import { FamilyTreeState, SetOriginalDataAction, SetFilteredDataAction, SetSelectedFamilyMemberAction, SetDateRangeAction } from '../common/types';
 
 const initialState: FamilyTreeState = {
   selectedFamilyMember: null,
