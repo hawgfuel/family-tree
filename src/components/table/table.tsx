@@ -1,23 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, {useState} from 'react';
 import { FamilyMember } from '../../common/types';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../store/store';
+import { setFilteredData } from '../../store/actions';
 import  './table.css';
 
-interface TableProps {
-  handleSort: (key: keyof FamilyMember) => void;
-}
-
-function FamilyTreeTable({ handleSort }: TableProps) {
-
+function FamilyTreeTable() {
+  const dispatch = useDispatch();
   const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
-
+  const [sortKey, setSortKey] = useState<string | null>(null);
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const getFormattedParentName = (parent: any) => {
     if (parent && typeof parent === 'object') {
       return `${parent.FirstName || ''} ${parent.LastName || ''}`.trim() || '';
     }
     return parent ? parent : 'unknown';
+  };
+
+// table component sort
+  const handleSort = (key: keyof FamilyMember) => {
+    const order = sortKey === key ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
+    const sortedData = [...filteredData].sort((a, b) => {
+      const aValue = a[key] ?? '';
+      const bValue = b[key] ?? '';
+      return order === 'asc' ? (aValue > bValue ? 1 : -1) : (aValue < bValue ? 1 : -1);
+    });
+    setSortKey(key);
+    setSortOrder(order);
+    dispatch(setFilteredData(sortedData));
   };
 
   return (

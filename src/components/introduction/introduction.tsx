@@ -1,15 +1,15 @@
 import React, {useLayoutEffect, useMemo } from 'react';
-import { FamilyMember } from '../common/types';
+import { FamilyMember } from '../../common/types';
 import { useSelector } from 'react-redux';
-import { RootState } from '../store/store';
+import { RootState } from '../../store/store';
 import {
   getFamilyTimeSpan,
   getMostCommonSurname,
   getMostCommonFirstNameByGender,
   getOldestFamilyMember,
   getYoungestFamilyMember,
-} from '../utilities/utilities';
-import { defaultFamilyMember } from '../constants/constants';
+} from '../../utilities/utilities';
+import { defaultFamilyMember } from '../../constants/constants';
 import './introduction.css';
 
 interface IntroductionProps {

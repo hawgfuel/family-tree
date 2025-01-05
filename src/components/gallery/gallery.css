@@ -27,6 +27,7 @@
 
   .image-container {
     position: relative;
+    background-color: #fff;
     padding: 20px; /* Padding around the image and caption */
     display: flex;
     flex-direction: column;

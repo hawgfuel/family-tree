@@ -2,14 +2,12 @@ import React, { useState, useEffect, useRef, Suspense  } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../store/store';
 import { setFilteredData } from '../store/actions';
-import { formatFamilyMemberData } from '../utilities/formatData';
-import { Introduction } from './introduction';
+import { Introduction } from '../components/introduction/introduction';
 import { DateRangePicker } from '../components/date-picker/date-picker';
 import { CardMasonryLayout } from '../components/card-masonry-layout/card-masonry-layout';
 import {CardTreeLayout} from '../components/card-tree-layout/card-tree-layout';
 import FamilyTreeTable from '../components/table/table';
 import {Gallery} from '../components/gallery/gallery';
-import { FamilyMember } from '../common/types';
 import Search from '../components/search/search';
 import {downloadCSV} from '../components/download-csv/download-csv';
 import '../styles/main.css';
@@ -19,41 +17,11 @@ export function MainContent() {
   const dispatch = useDispatch();
   const originalData = useSelector((state: RootState) => state.familyTree.originalData);
   const filteredData = useSelector((state: RootState) => state.familyTree.filteredData);
-  const [sortKey, setSortKey] = useState<string | null>(null);
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
   const [isActive, setIsActive] = useState<string>('tab-0');
   const contentRef = useRef<HTMLDivElement>(null);
-  
   const [cardLayout, setCardLayout] = useState<'masonry' | 'tree'>('masonry');
-  const [dateRange, setDateRange] = useState<{ startDate: string; endDate: string }>({
-    startDate: '',
-    endDate: '',
-  });
   const tabContent = ['Card view', 'Table view', 'Gallery'];
-  const startDateRef = useRef<HTMLInputElement | null>(null);
-  const endDateRef = useRef<HTMLInputElement | null>(null);
-
-  useEffect(() => {
-    if(originalData.length > 0){
-      const updatedData = formatFamilyMemberData(originalData, dateRange);
-      dispatch(setFilteredData(updatedData));
-    }
-  }, [originalData, dateRange]);
-// end move
-
-// table component sort
-  const handleSort = (key: keyof FamilyMember) => {
-    const order = sortKey === key ? (sortOrder === 'asc' ? 'desc' : 'asc') : 'asc';
-    const sortedData = [...filteredData].sort((a, b) => {
-      const aValue = a[key] ?? '';
-      const bValue = b[key] ?? '';
-      return order === 'asc' ? (aValue > bValue ? 1 : -1) : (aValue < bValue ? 1 : -1);
-    });
-    setSortKey(key);
-    setSortOrder(order);
-    dispatch(setFilteredData(sortedData));
-  };
-
+  
 // seach component data filter
   const handleSearch = (searchTerm: string) => {
     const filtered = originalData.filter((familyMember) =>
@@ -61,20 +29,6 @@ export function MainContent() {
     );
     dispatch(setFilteredData(filtered));
   };
-
-  // move to date component
-  const clearDateRange = () => {
-    if (startDateRef.current) startDateRef.current.value = '';
-    if (endDateRef.current) endDateRef.current.value = '';
-    setDateRange({ startDate: '', endDate: '' });
-  };
-
-  const updateDateRange = () => {
-    const startDate = startDateRef.current?.value || '';
-    const endDate = endDateRef.current?.value || '';
-    setDateRange({ startDate, endDate });
-  };
-// end move
 
   return (
     <div className="content-wrapper fade-in">
@@ -84,13 +38,7 @@ export function MainContent() {
         <div className="filter-container">
           <h4 className="filter-header">Filters:</h4>
           <Search setSearchData={handleSearch} setCardLayout={setCardLayout} />
-          <DateRangePicker
-            updateDateRange={updateDateRange}
-            clearDateRange={clearDateRange}
-            dateRange={dateRange}
-            startDateRef={startDateRef}
-            endDateRef={endDateRef}
-          />
+          <DateRangePicker />
         </div>
 }
         <div className="tab-list" id="content" ref={contentRef}>
@@ -115,7 +63,8 @@ export function MainContent() {
       </div>
       <div className='card-table'>
         {isActive === 'tab-0' &&
-            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. <br />When filtered by family, click on the father's name to see his siblings and parents.</p> 
+            <p className='filter-instructions'>Click the family member name in the card to view the immediate family tree. 
+            <br />When filtered by family, click on the father's name to see his siblings and parents.</p> 
           }
         {cardLayout=== 'masonry' && isActive === 'tab-0' &&
           <CardMasonryLayout setCardLayout={setCardLayout} />
@@ -126,7 +75,7 @@ export function MainContent() {
         </Suspense>
         }
         {isActive === 'tab-1' && (
-            <FamilyTreeTable handleSort={handleSort} />
+            <FamilyTreeTable />
         )}
         {isActive === 'tab-2' &&
           <Gallery />
