@@ -25,7 +25,7 @@
 
 .fl-table thead th {
     color:var(--button-text-color);
-    background: var(--light-blue-background);
+    background: var(--secondary-background);
     cursor: pointer;
 }
 

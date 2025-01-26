@@ -12,7 +12,6 @@ import Search from '../components/search/search';
 import {downloadCSV} from '../components/download-csv/download-csv';
 import '../styles/main.css';
 
-
 export function MainContent() {
   const dispatch = useDispatch();
   const originalData = useSelector((state: RootState) => state.familyTree.originalData);

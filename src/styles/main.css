@@ -33,7 +33,7 @@ input, select{background-color: var(--input-background-color)}
 button{border: none;cursor: pointer;padding: 8px;color:var(--button-text-color)}
 
 a {font-weight:bold;color:var(--link-color);text-decoration:none;cursor:pointer;}
-a:hover {color:var(--light-blue-text)}
+a:hover {color:var(--secondary-text-color)}
 
 .csv-download-container {margin-left:12px;}
 
@@ -46,7 +46,7 @@ a:hover {color:var(--light-blue-text)}
 .contact-me {padding-left:8px;}
 
 .clear-all{
-    background-color: var(--light-blue-background);
+    background-color: var(--secondary-background);
 }
 
 .no-click{cursor:default;}
@@ -72,7 +72,7 @@ a:hover {color:var(--light-blue-text)}
     border:none;
     padding:8px;
     cursor: pointer;
-    background-color: var(--grey-button-bg);
+    background-color: var(--default-button-bg);
     color:var(--button-text-color);
 }
 
@@ -119,7 +119,7 @@ select {
     font-weight:500;
     margin:0px 0px 20px 0;
     text-align: center;
-    color: var(--light-blue-text);
+    color: var(--secondary-text-color);
 }
 
 .filter-header{margin:0;display:inline-block;}

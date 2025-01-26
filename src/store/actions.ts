@@ -28,3 +28,29 @@ export const setDateRange = (range: { startDate: string; endDate: string }) => (
   range,
 });
 
+export interface SetOriginalDataAction {
+  type: 'SET_ORIGINAL_DATA';
+  data?: FamilyMember[];
+}
+
+export interface SetFilteredDataAction {
+  type: 'SET_FILTERED_DATA';
+  data?: FamilyMember[];
+}
+
+export interface SetSelectedFamilyMemberAction {
+  type: 'SET_SELECTED_FAMILY_MEMBER';
+  payload: FamilyMember | null;
+}
+
+export interface SetDateRangeAction {
+  type: 'SET_DATE_RANGE';
+  range?: { startDate: string; endDate: string };
+}
+
+// Combine all action types for use in the reducer
+export type FamilyTreeAction =
+  | SetOriginalDataAction
+  | SetFilteredDataAction
+  | SetSelectedFamilyMemberAction
+  | SetDateRangeAction;

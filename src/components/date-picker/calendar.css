@@ -44,7 +44,7 @@
 
   .clear-range-Button{
     color: var(--button-text-color);
-    background-color:var(--grey-button-bg);
+    background-color:var(--default-button-bg);
   }
   
   .date-range-Popover {
@@ -73,7 +73,7 @@
   }
   
   .date-range-CalendarCell[data-selected] {
-    background-color: var(--grey-button-bg);
+    background-color: var(--default-button-bg);
     color: white;
   }
   
