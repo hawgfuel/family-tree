@@ -62,13 +62,15 @@ interface IntroductionProps {
                 <div className='intro-item'>
                     <h1>Werstler Family Tree</h1>
                     <p className='introduction-paragraph'>
-                        Below is a collection of data of ancestors with the Werstler surname. 
-                        This is a living document that I plan to grow as I collect more information and find new ways to present it.
+                    Welcome to my family tree website, dedicated to tracing the Werstler lineage. This is a living document that I plan to expand as I gather more information and refine existing records.
                     </p>
-                    <p className='introduction-paragraph'>There are some errors in the data as it was entered into the database by hand, 
-                            but I plan to clean up the data where I can.
-                            Currently there are no living relatives in the data below, but I hope to add those relatives with their approval. 
+                    <p className='introduction-paragraph'>
+                    The earliest known ancestor, Johann Andreas Wuershler, was born in 1620 in <a href="https://en.wikipedia.org/wiki/W%C3%BCrselen" target="_blank">Wurselen</a>, 
+                    Germany, near <a href="https://en.wikipedia.org/wiki/Aachen" target="_blank">Aachen</a>. This historically significant region was once Charlemagne's winter court and the 
+                    coronation site of German kings. Johann Andreas lived through the <a href="https://en.wikipedia.org/wiki/Thirty_Years%27_War" target="_blank">Thirty Years' War</a> and, as a Lutheran, relocated to Winden due to religious persecution. 
+                    He held an official role in the community but died in 1665 after a dispute over livestock.
                     </p>
+                     <p className='introduction-paragraph'>I look forward to discovering more about our family's history and sharing these stories along the way.</p>
                 </div>
             </div>
             <ul className='introduction-data'>

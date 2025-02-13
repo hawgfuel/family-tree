@@ -83,7 +83,7 @@ export function Gallery() {
             key={value}
             onClick={() => handleImageClick(value, caption, index)}
           >
-            <img alt={value} src={getImageUrl(value)} />
+            <img alt={value} src={getImageUrl(value)} loading='lazy' />
           </div>
         ))}
 
